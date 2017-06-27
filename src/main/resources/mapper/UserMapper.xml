@@ -18,7 +18,7 @@
         <result property="updateBy" column="updateBy"/>
         <result property="createBy" column="createBy"/>
     </resultMap>-->
-    <resultMap id="UserWithOrganization" type="com.zmc.common.entity.User">
+    <resultMap id="UserWithOrganization" type="User">
         <id property="id" column="id"/>
         <result property="username" column="username"/>
         <result property="password" column="password"/>
@@ -30,7 +30,7 @@
         <result property="update_time" column="update_time" />
         <result property="create_by" column="create_by" />
         <result property="update_by" column="update_by" />
-        <association property="organization" javaType="com.zmc.common.entity.Organization">
+        <association property="organization" javaType="Organization">
             <id property="id" column="id" />
             <result property="name" column="name" />
             <result property="parent_id" column="parent_id" />
