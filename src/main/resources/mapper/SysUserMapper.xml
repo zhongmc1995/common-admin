@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmc.mapper.UserMapper">
+
+    <!-- 映射 -->
+    <!--<resultMap id="BaseUserMapper" type="com.onion.entity.SysUser">
+        <id property="id" column="id"/>
+        <result property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="desc" column="desc"/>
+        <result property="email" column="email"/>
+        <result property="icon" column="icon"/>
+        <result typeHandler="com.onion.entity.handler.AddressHandler" property="address" column="address"/>
+        <result property="introduce" column="introduce"/>
+        <result property="updateTime" column="updateTime"/>
+        <result property="createTime" column="createTime"/>
+        <result property="updateBy" column="updateBy"/>
+        <result property="createBy" column="createBy"/>
+    </resultMap>-->
+    <resultMap id="UserWithOrganization" type="com.zmc.common.entity.User">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email" />
+        <result property="phone" column="phone" />
+        <result property="salt" column="salt" />
+        <result property="lock" column="lock" />
+        <result property="create_time" column="create_time" />
+        <result property="update_time" column="update_time" />
+        <result property="create_by" column="create_by" />
+        <result property="update_by" column="update_by" />
+        <association property="organization" javaType="com.zmc.common.entity.Organization">
+            <id property="id" column="id" />
+            <result property="name" column="name" />
+            <result property="parent_id" column="parent_id" />
+            <result property="parent_ids" column="parent_ids" />
+            <result property="available" column="available" />
+            <result property="create_time" column="create_time" />
+            <result property="update_time" column="update_time" />
+            <result property="create_by" column="create_by" />
+            <result property="update_by" column="update_by" />
+        </association>
+    </resultMap>
+
+    <select id="findAllUsers" resultMap="UserWithOrganization">
+        SELECT u.*,o.*
+        FROM sys_user u,sys_organization o
+    </select>
+
+</mapper>
