@@ -1,6 +1,11 @@
 package com.zmc.common.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.zmc.common.BaseEntity;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -10,7 +15,21 @@ import com.zmc.common.BaseEntity;
 /**
  * 系统用户
  */
-public class User extends BaseEntity {
+public class User extends BaseEntity implements Serializable {
+    public User(){}
+
+    public User(String username, String password, String email, String phone, String salt, Integer locked,
+                Organization organization, Date create_time, Date update_time, String create_by, String update_by) {
+        super(create_time,update_time,create_by,update_by);
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.salt = salt;
+        this.locked = locked;
+        this.organization = organization;
+    }
+
     /**
      * 用户名
      */
@@ -36,13 +55,19 @@ public class User extends BaseEntity {
      *  0 ：可用
      *  1：不可用
      */
-    private Integer lock;
+    private Integer locked;
 
     /**
      * 所在的组
      */
     private Organization organization;
 
+    /**
+     * 所有角色
+     * @return
+     */
+
+    private List<Role> roles;
     public String getUsername() {
         return username;
     }
@@ -83,12 +108,16 @@ public class User extends BaseEntity {
         this.salt = salt;
     }
 
-    public Integer getLock() {
-        return lock;
+    public String getCredentialsSalt() {
+        return username + salt;
     }
 
-    public void setLock(Integer lock) {
-        this.lock = lock;
+    public Integer getLocked() {
+        return locked;
+    }
+
+    public void setLocked(Integer locked) {
+        this.locked = locked;
     }
 
     public Organization getOrganization() {
@@ -99,5 +128,11 @@ public class User extends BaseEntity {
         this.organization = organization;
     }
 
+    public List<Role> getRoles() {
+        return roles;
+    }
 
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmc.mapper.ResourceMapper">
+    <!-- insertResource -->
+    <insert id="insertResource" parameterType="Resource">
+        INSERT INTO sys_resource(name,type,url,parent_id,parent_ids,permission,available,
+                                  create_time,update_time,create_by,update_by)
+        VALUES (#{name},#{type},#{url},#{parent_id},#{parent_ids},#{permission},#{available},
+                #{create_time},#{update_time},#{create_by},#{update_by})
+    </insert>
+
+    <!-- findAllResources -->
+    <select id="findAllResources" resultType="Resource">
+        SELECT r.*
+        FROM sys_resource r
+    </select>
+
+    <!-- deleteResourceById -->
+    <delete id="deleteResourceById" parameterType="long">
+        DELETE
+        FROM sys_resource
+        WHERE id = #{id}
+    </delete>
+</mapper>

@@ -1,2 +1,344 @@
 [ERROR][2017/06/27 23:15:36419][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/27 23:30:30304][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/27 23:30:47772][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/27 23:31:21812][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/27 23:31:2250 ][org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:231)] - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@1a84f40f] to prepare test instance [com.zmc.UserTest@3c72f59f]
+ java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:228)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:230)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:249)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:89)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:193)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.execution.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:51)
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:237)
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [config/spring/applicationContext-dao.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [C:\Users\zhongmc\IdeaProjects\common-admin\target\classes\mapper\SysUserMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'User'.  Cause: java.lang.ClassNotFoundException: Cannot find class: User
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1578)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:753)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:839)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:538)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:125)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:109)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:261)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116)
+	... 24 more
+Caused by: org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [C:\Users\zhongmc\IdeaProjects\common-admin\target\classes\mapper\SysUserMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'User'.  Cause: java.lang.ClassNotFoundException: Cannot find class: User
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:523)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:380)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1637)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1574)
+	... 39 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'User'.  Cause: java.lang.ClassNotFoundException: Cannot find class: User
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:120)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:92)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:521)
+	... 42 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'User'.  Cause: java.lang.ClassNotFoundException: Cannot find class: User
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:118)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:265)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:252)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElements(XMLMapperBuilder.java:244)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:116)
+	... 44 more
+Caused by: org.apache.ibatis.type.TypeException: Could not resolve type alias 'User'.  Cause: java.lang.ClassNotFoundException: Cannot find class: User
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:120)
+	at org.apache.ibatis.builder.BaseBuilder.resolveAlias(BaseBuilder.java:149)
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:116)
+	... 48 more
+Caused by: java.lang.ClassNotFoundException: Cannot find class: User
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:200)
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:89)
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:261)
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:116)
+	... 50 more
+[ERROR][2017/06/27 23:34:18583][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 09:12:0926 ][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 09:14:0613 ][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 09:15:14572][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 09:33:53304][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 09:35:08128][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 09:37:35600][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 09:44:32719][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 09:45:07988][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 09:48:01736][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 10:00:50610][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 10:07:33288][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 10:09:54901][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 10:16:017  ][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 10:24:39461][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 10:29:21436][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 10:32:39559][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 10:38:07590][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 10:38:2617 ][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 10:43:33730][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 10:47:53662][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 10:48:53253][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 10:50:29665][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 10:50:55612][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 10:51:1077 ][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 10:52:48617][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 10:53:20795][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 11:05:20222][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 11:05:30914][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 11:05:3566 ][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 11:05:45822][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 14:13:05977][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 14:15:01769][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 14:15:11501][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 15:37:55322][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 19:00:19988][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 19:02:09901][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 19:05:06925][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 19:05:45606][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 19:06:18622][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 19:35:59138][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 20:01:43732][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 20:05:59991][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 20:06:58104][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 20:22:26922][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 20:24:31131][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 20:28:14120][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/28 20:28:32371][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/29 09:00:18611][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/29 09:00:1938 ][org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:231)] - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5db45159] to prepare test instance [com.zmc.RoleTest@77167fb7]
+ java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:228)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:230)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:249)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:89)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:193)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.execution.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:51)
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:237)
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [config/spring/applicationContext-dao.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [C:\Users\zhongmc\IdeaProjects\common-admin\target\classes\mapper\RoleMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: java.lang.IllegalStateException: Mapping is missing column attribute for property users
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1578)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:753)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:839)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:538)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:125)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:109)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:261)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116)
+	... 24 more
+Caused by: org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [C:\Users\zhongmc\IdeaProjects\common-admin\target\classes\mapper\RoleMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: java.lang.IllegalStateException: Mapping is missing column attribute for property users
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:523)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:380)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1637)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1574)
+	... 39 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: java.lang.IllegalStateException: Mapping is missing column attribute for property users
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:120)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:92)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:521)
+	... 42 more
+Caused by: java.lang.IllegalStateException: Mapping is missing column attribute for property users
+	at org.apache.ibatis.mapping.ResultMapping$Builder.validate(ResultMapping.java:155)
+	at org.apache.ibatis.mapping.ResultMapping$Builder.build(ResultMapping.java:140)
+	at org.apache.ibatis.builder.MapperBuilderAssistant.buildResultMapping(MapperBuilderAssistant.java:394)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildResultMappingFromContext(XMLMapperBuilder.java:378)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:280)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:252)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElements(XMLMapperBuilder.java:244)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:116)
+	... 44 more
+[ERROR][2017/06/29 09:01:35836][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/29 09:01:36176][org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:231)] - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5db45159] to prepare test instance [com.zmc.RoleTest@77167fb7]
+ java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:228)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:230)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:249)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:89)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:193)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.execution.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:51)
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:237)
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [config/spring/applicationContext-dao.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [C:\Users\zhongmc\IdeaProjects\common-admin\target\classes\mapper\RoleMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: java.lang.IllegalStateException: Mapping is missing column attribute for property users
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1578)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:753)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:839)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:538)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:125)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:109)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:261)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116)
+	... 24 more
+Caused by: org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [C:\Users\zhongmc\IdeaProjects\common-admin\target\classes\mapper\RoleMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: java.lang.IllegalStateException: Mapping is missing column attribute for property users
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:523)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:380)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1637)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1574)
+	... 39 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: java.lang.IllegalStateException: Mapping is missing column attribute for property users
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:120)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:92)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:521)
+	... 42 more
+Caused by: java.lang.IllegalStateException: Mapping is missing column attribute for property users
+	at org.apache.ibatis.mapping.ResultMapping$Builder.validate(ResultMapping.java:155)
+	at org.apache.ibatis.mapping.ResultMapping$Builder.build(ResultMapping.java:140)
+	at org.apache.ibatis.builder.MapperBuilderAssistant.buildResultMapping(MapperBuilderAssistant.java:394)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildResultMappingFromContext(XMLMapperBuilder.java:378)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:280)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:252)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElements(XMLMapperBuilder.java:244)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:116)
+	... 44 more
+[ERROR][2017/06/29 09:02:52536][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/29 09:03:4247 ][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/29 09:03:53748][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/29 09:04:34728][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/29 09:28:08352][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/29 09:28:08684][org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:231)] - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5db45159] to prepare test instance [com.zmc.ResourceTest@77167fb7]
+ java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:228)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:230)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:249)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:89)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:193)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.execution.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:51)
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:237)
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [config/spring/applicationContext-dao.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [C:\Users\zhongmc\IdeaProjects\common-admin\target\classes\mapper\ResourceMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'Resouce'.  Cause: java.lang.ClassNotFoundException: Cannot find class: Resouce
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1578)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:753)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:839)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:538)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:125)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:109)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:261)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116)
+	... 24 more
+Caused by: org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [C:\Users\zhongmc\IdeaProjects\common-admin\target\classes\mapper\ResourceMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'Resouce'.  Cause: java.lang.ClassNotFoundException: Cannot find class: Resouce
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:523)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:380)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1637)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1574)
+	... 39 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'Resouce'.  Cause: java.lang.ClassNotFoundException: Cannot find class: Resouce
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:120)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:92)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:521)
+	... 42 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'Resouce'.  Cause: java.lang.ClassNotFoundException: Cannot find class: Resouce
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:118)
+	at org.apache.ibatis.builder.xml.XMLStatementBuilder.parseStatementNode(XMLStatementBuilder.java:74)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:135)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:128)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:118)
+	... 44 more
+Caused by: org.apache.ibatis.type.TypeException: Could not resolve type alias 'Resouce'.  Cause: java.lang.ClassNotFoundException: Cannot find class: Resouce
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:120)
+	at org.apache.ibatis.builder.BaseBuilder.resolveAlias(BaseBuilder.java:149)
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:116)
+	... 48 more
+Caused by: java.lang.ClassNotFoundException: Cannot find class: Resouce
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:200)
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:89)
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:261)
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:116)
+	... 50 more
+[ERROR][2017/06/29 09:28:50673][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/29 09:34:0885 ][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/29 09:37:26955][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/29 09:37:37821][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
  

@@ -2,22 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zmc.mapper.UserMapper">
 
-    <!-- 映射 -->
-    <!--<resultMap id="BaseUserMapper" type="com.onion.entity.SysUser">
-        <id property="id" column="id"/>
-        <result property="id" column="id"/>
-        <result property="username" column="username"/>
-        <result property="password" column="password"/>
-        <result property="desc" column="desc"/>
-        <result property="email" column="email"/>
-        <result property="icon" column="icon"/>
-        <result typeHandler="com.onion.entity.handler.AddressHandler" property="address" column="address"/>
-        <result property="introduce" column="introduce"/>
-        <result property="updateTime" column="updateTime"/>
-        <result property="createTime" column="createTime"/>
-        <result property="updateBy" column="updateBy"/>
-        <result property="createBy" column="createBy"/>
-    </resultMap>-->
+
+
     <resultMap id="UserWithOrganization" type="User">
         <id property="id" column="id"/>
         <result property="username" column="username"/>
@@ -30,7 +16,7 @@
         <result property="update_time" column="update_time" />
         <result property="create_by" column="create_by" />
         <result property="update_by" column="update_by" />
-        <association property="organization" javaType="Organization">
+        <!--<association property="organization" javaType="Organization">
             <id property="id" column="id" />
             <result property="name" column="name" />
             <result property="parent_id" column="parent_id" />
@@ -40,12 +26,101 @@
             <result property="update_time" column="update_time" />
             <result property="create_by" column="create_by" />
             <result property="update_by" column="update_by" />
-        </association>
+        </association>-->
+        <!-- fetchType="eager"这个属性一定要配置，否则在转json时会因为懒加载而报json转化异常
+            具体参考：http://hongmin118.iteye.com/blog/1194208
+         -->
+        <association property="organization" fetchType="eager" column="organization_id" select="findOrganizationById" />
     </resultMap>
 
+    <resultMap id="UserWithFullInfo" type="User" extends="UserWithOrganization">
+        <collection property="roles" resultMap="RoleResult"></collection>
+    </resultMap>
+
+    <resultMap id="RoleResult" type="Role">
+        <id property="id" column="r_id"/>
+        <result property="name" column="name"/>
+        <result property="descr" column="descr"/>
+        <result property="available" column="available"/>
+        <result property="create_time" column="r_create_time" />
+        <result property="update_time" column="r_update_time" />
+        <result property="create_by" column="r_create_by" />
+        <result property="update_by" column="r_update_by" />
+    </resultMap>
+
+    <!-- 获取所有用户 -->
     <select id="findAllUsers" resultMap="UserWithOrganization">
-        SELECT u.*,o.*
-        FROM sys_user u,sys_organization o
+        SELECT u.*
+        FROM sys_user u
     </select>
 
+    <!-- 获取用户名的用户全部信息 -->
+    <select id="findUserByUsernameWithFullInfo" parameterType="string" resultMap="UserWithFullInfo">
+        SELECT u.*,r.id r_id,r.name name,r.descr descr,r.available available,
+                r.create_time r_create_time,r.update_time r_update_time,
+                r.create_by r_create_by,r.update_by r_update_by
+        FROM sys_user u,sys_role r,sys_user_role ur
+        WHERE
+        u.id = ur.user_id AND r.id = ur.role_id
+        AND u.username = #{usernmae}
+    </select>
+    <!-- 根据组织ID获取组织 -->
+    <select id="findOrganizationById" parameterType="long" resultType="Organization">
+        SELECT o.*
+        FROM sys_organization o
+        WHERE o.id = #{id}
+    </select>
+
+    <!-- 新增用户 -->
+    <insert id="insertUser" parameterType="User">
+        INSERT
+        INTO sys_user(username,password,email,phone,salt,locked,organization_id,create_time,update_time,create_by,update_by)
+        VALUES (#{username},#{password},#{email},#{phone},#{salt},#{locked},#{organization.id},#{create_time},#{update_time},#{create_by},#{update_by})
+    </insert>
+
+    <!-- 用户关联组织 -->
+    <update id="relatedOrganization">
+        UPDATE sys_user
+        SET organization_id = #{o.id}
+        WHERE id = #{u.id}
+    </update>
+
+    <!-- 根据用户名查用户 -->
+    <select id="findUserByUsername" parameterType="string" resultMap="UserWithOrganization">
+        SELECT u.*
+        FROM sys_user u
+        WHERE u.username = #{username}
+    </select>
+
+    <!-- 修改密码 -->
+    <update id="modifyPassword">
+        UPDATE sys_user
+        SET password = #{u.password},update_time = #{u.update_time},update_by = #{u.update_by}
+        WHERE id = #{u.id}
+    </update>
+
+    <!-- 根据ID删除用户 -->
+    <delete id="deleteUserById" parameterType="long">
+        DELETE
+        FROM sys_user
+        WHERE id = #{id}
+    </delete>
+
+    <!-- 根据username查询角色 -->
+    <select id="findRolesByUsername" parameterType="string" resultType="role">
+        SELECT r.*
+        FROM sys_user u,sys_role r,sys_user_role ur
+        WHERE
+        u.id = ur.user_id AND r.id = ur.role_id
+        AND u.username = #{usernmae}
+    </select>
+
+    <!-- 根据username查询具有的权限字符串 -->
+    <select id="findResourceByUsername" parameterType="string" resultType="Resource">
+        SELECT res.*
+        FROM sys_user u,sys_user_role ur ,sys_role r,sys_resource res,sys_role_resource rr
+        WHERE u.id = ur.user_id and r.id = ur.role_id
+			and r.id = rr.role_id and res.id = rr.resource_id
+			AND u.username = #{username}
+    </select>
 </mapper>

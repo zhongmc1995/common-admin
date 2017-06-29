@@ -27,8 +27,7 @@
 	
 	<!-- 查询对象别名配置 -->
 	<typeAliases>
-		<!-- 
-		<typeAlias alias="taskVo" type="xxx.vo.TaskVo" />
-		 -->
+		<!-- com.zmc.common.entity的实体类别名全部为类名 -->
+		<package name="com.zmc.common.entity"/>
 	</typeAliases>
 </configuration>

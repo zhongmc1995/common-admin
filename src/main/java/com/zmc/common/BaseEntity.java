@@ -11,6 +11,15 @@ import java.util.Date;
  * 基础类
  */
 public class BaseEntity implements Serializable {
+    public BaseEntity(){}
+
+    public BaseEntity(Date create_time, Date update_time, String create_by, String update_by) {
+        this.create_time = create_time;
+        this.update_time = update_time;
+        this.create_by = create_by;
+        this.update_by = update_by;
+    }
+
     /**
      * 主键
      */
