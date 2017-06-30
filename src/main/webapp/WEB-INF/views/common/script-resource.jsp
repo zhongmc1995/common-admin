@@ -37,4 +37,3 @@
 <script src="static/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="static/dist/js/demo.js"></script>
-<script src="static/js/jquery-1.11.0.min.js"></script>

@@ -341,4 +341,38 @@ Caused by: java.lang.ClassNotFoundException: Cannot find class: Resouce
  [ERROR][2017/06/29 09:34:0885 ][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
  [ERROR][2017/06/29 09:37:26955][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
  [ERROR][2017/06/29 09:37:37821][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 14:30:37192][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 14:32:17744][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 14:55:07226][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 15:53:50206][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 15:54:0192 ][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 15:54:15538][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 15:54:33466][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 15:55:03633][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 15:55:25165][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 15:55:30745][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 15:55:35991][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 15:56:17556][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 15:59:03645][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 15:59:50561][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 15:59:59196][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 16:00:03162][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 16:00:41688][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 16:01:29962][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 16:03:22306][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 16:16:18642][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 16:20:34721][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 16:25:25626][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 16:30:04904][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 16:31:50186][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 16:32:46832][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 16:34:59380][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 16:37:18980][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 16:37:28675][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 16:44:10824][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 16:45:32584][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 16:45:46660][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 16:47:58926][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 16:48:50304][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/06/30 16:50:17402][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
  

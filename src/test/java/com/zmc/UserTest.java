@@ -1,6 +1,7 @@
 package com.zmc;
 
 import com.zmc.common.entity.Organization;
+import com.zmc.common.entity.Resource;
 import com.zmc.common.entity.User;
 import com.zmc.service.UserService;
 import org.junit.Test;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by zhongmc on 2017/6/27.
@@ -89,6 +91,13 @@ public class UserTest extends BaseTest {
     @Test
     public void findUserByUsernameWithFullInfo()throws Exception{
         User lisi = userService.findUserByUsernameWithFullInfo("lisi");
+        System.out.println(lisi);
+    }
+
+    @Test
+    public void findResourceByUsername() throws Exception {
+
+        Set<Resource> lisi = userService.findResourceByUsername("lisi");
         System.out.println(lisi);
     }
 

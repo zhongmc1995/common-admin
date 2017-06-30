@@ -1,13 +1,17 @@
 package com.zmc.service.Impl;
 
+import com.zmc.common.entity.Resource;
 import com.zmc.common.entity.Role;
+import com.zmc.common.vo.Menu;
 import com.zmc.constant.Constant;
 import com.zmc.mapper.RoleMapper;
+import com.zmc.mapper.UserMapper;
 import com.zmc.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by zhongmc on 2017/6/28.
@@ -64,5 +68,8 @@ public class RoleServiceImpl implements RoleService {
             return false;
         }
     }
+
+
+
 
 }

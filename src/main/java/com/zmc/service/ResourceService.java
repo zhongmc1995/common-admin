@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface ResourceService {
     void addResource(Resource resource)throws Exception;
-    List<Resource> findAllResouces()throws Exception;
+    List<Resource> findAllResources()throws Exception;
     Boolean deleteResourceById(Long id);
+    public List<Resource> findWildResourcesByUsername(String username) throws Exception;
 }
