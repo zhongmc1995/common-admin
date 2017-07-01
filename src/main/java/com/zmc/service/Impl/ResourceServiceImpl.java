@@ -1,7 +1,6 @@
 package com.zmc.service.Impl;
 
 import com.zmc.common.entity.Resource;
-import com.zmc.common.vo.Menu;
 import com.zmc.mapper.ResourceMapper;
 import com.zmc.mapper.UserMapper;
 import com.zmc.service.ResourceService;

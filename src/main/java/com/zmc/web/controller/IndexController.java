@@ -2,11 +2,17 @@ package com.zmc.web.controller;
 
 import com.google.code.kaptcha.servlet.KaptchaExtend;
 import com.zmc.common.entity.Organization;
+import com.zmc.common.entity.Resource;
 import com.zmc.common.entity.User;
+import com.zmc.common.vo.Menu;
 import com.zmc.service.OrganizationService;
+import com.zmc.service.ResourceService;
 import com.zmc.service.UserService;
+import com.zmc.utils.MenuHelper;
+import com.zmc.web.bind.annotation.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,9 +33,14 @@ public class IndexController {
     private UserService userService;
     @Autowired
     private OrganizationService organizationService;
+    @Autowired
+    private ResourceService resourceService;
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
-    public String indexPage(){
+    public String indexPage(@CurrentUser User currentUser, Model model) throws Exception {
+        List<Resource> lisi = resourceService.findWildResourcesByUsername(currentUser.getUsername());
+        List<Menu> menus = MenuHelper.buildMenuTree(lisi);
+        model.addAttribute("menus",menus);
         return "index";
     }
 

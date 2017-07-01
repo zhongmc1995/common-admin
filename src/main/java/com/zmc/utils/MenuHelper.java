@@ -31,7 +31,7 @@ public class MenuHelper {
     }
 
     /**
-     * 菜单拼接
+     * 前台显示的下拉菜单拼接
      * 1.将资源按照rank分类放在List数组中
      * 2.将数组从后往前遍历查找父菜单并拼接
      * @param resources
