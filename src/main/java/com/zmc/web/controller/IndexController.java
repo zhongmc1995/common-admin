@@ -38,9 +38,9 @@ public class IndexController {
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String indexPage(@CurrentUser User currentUser, Model model) throws Exception {
-        List<Resource> lisi = resourceService.findWildResourcesByUsername(currentUser.getUsername());
+        /*List<Resource> lisi = resourceService.findWildResourcesByUsername(currentUser.getUsername());
         List<Menu> menus = MenuHelper.buildMenuTree(lisi);
-        model.addAttribute("menus",menus);
+        model.addAttribute("menus",menus);*/
         return "index";
     }
 
