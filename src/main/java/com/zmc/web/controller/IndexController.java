@@ -61,4 +61,8 @@ public class IndexController {
         return userService.findUserByUsernameWithFullInfo(username);
     }
 
+    @RequestMapping(value = "/unauthorized.html",method = RequestMethod.GET)
+    public String unauthorizedPage(){
+        return "common/unauthorized";
+    }
 }

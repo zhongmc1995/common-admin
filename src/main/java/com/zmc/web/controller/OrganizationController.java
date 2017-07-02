@@ -25,18 +25,11 @@ import java.util.List;
 public class OrganizationController {
     @Autowired
     private OrganizationService organizationService;
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private ResourceService resourceService;
 
     @RequestMapping(value = "/organization-view.html",method = RequestMethod.GET)
-    public String organizationView(@CurrentUser User currentUser,Model model) throws Exception {
+    public String organizationView(Model model) throws Exception {
         List<Organization> organizations = organizationService.findAllOrganizations();
         model.addAttribute("organizations",organizations);
-        /*List<Resource> lisi = resourceService.findWildResourcesByUsername(currentUser.getUsername());
-        List<Menu> menus = MenuHelper.buildMenuTree(lisi);
-        model.addAttribute("menus",menus);*/
 
         return "organization/organization_view";
     }

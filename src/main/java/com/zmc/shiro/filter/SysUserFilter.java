@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -31,7 +30,7 @@ public class SysUserFilter extends PathMatchingFilter {
 
         String username = (String) SecurityUtils.getSubject().getPrincipal();
         request.setAttribute(Constant.CURRENT_USER, userService.findUserByUsername(username));
-
+        // 全局设置左边的菜单
         List<Resource> resources = resourceService.findWildResourcesByUsername(username);
         List<Menu> menus = MenuHelper.buildMenuTree(resources);
         request.setAttribute("menus",menus);

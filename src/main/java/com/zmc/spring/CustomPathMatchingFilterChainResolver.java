@@ -38,7 +38,6 @@ public class CustomPathMatchingFilterChainResolver extends PathMatchingFilterCha
                 if(!iterator.hasNext()) {
                     return null;
                 }
-
                 pathPattern = (String)iterator.next();
             } while(!this.pathMatches(pathPattern, requestURI));
             chainNames.add(pathPattern);

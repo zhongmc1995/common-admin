@@ -25,16 +25,15 @@ import java.util.Map;
 public class CustomDefaultFilterChainManager extends DefaultFilterChainManager {
 
     private Map<String, String> filterChainDefinitionMap = null;
-
     private String loginUrl;
     private String successUrl;
     private String unauthorizedUrl;
-
     public CustomDefaultFilterChainManager() {
         setFilters(new LinkedHashMap<String, Filter>());
         setFilterChains(new LinkedHashMap<String, NamedFilterList>());
         addDefaultFilters(false);
     }
+
 
     public Map<String, String> getFilterChainDefinitionMap() {
         return filterChainDefinitionMap;

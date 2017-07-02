@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmc.mapper.UrlFilterMapper">
+
+    <!-- insertUrlFilter -->
+    <insert id="insertUrlFilter" parameterType="UrlFilter">
+        INSERT INTO sys_url_filter(name,url,roles,permissions,create_time,update_time,create_by,update_by)
+        VALUES (#{name},{url},#{roles},#{permission},#{create_time},#{update_time},#{create_by},#{update_by})
+    </insert>
+
+    <!-- updateUrlFilter -->
+    <update id="updateUrlFilter" parameterType="UrlFilter">
+        UPDATE
+        sys_url_filter
+        SET name =#{name},url = #{url},roles = #{roles},permission = #{permission},
+            create_time = #{create_time},update_time = #{update_time},
+            create_by = #{create_by},update_by = #{update_by}
+    </update>
+
+    <!-- deleteUrlFilter -->
+    <delete id="deleteUrlFilter" parameterType="long">
+        DELETE
+        FROM sys_url_filter
+        WHERE id = #{id}
+    </delete>
+
+    <!-- findUrlFilterById -->
+    <select id="findUrlFilterById" parameterType="long" resultType="UrlFilter">
+        SELECT suf.*
+        FROM sys_url_filter suf
+        WHERE id = #{id}
+    </select>
+
+    <!-- findAllUrlFilters -->
+    <select id="findAllUrlFilters" resultType="UrlFilter">
+         SELECT suf.*
+        FROM sys_url_filter suf
+    </select>
+</mapper>

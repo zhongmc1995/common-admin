@@ -16,9 +16,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- css -->
     <jsp:include page="common/css-resource.jsp" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/css.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/jquery-treetable/stylesheets/jquery.treetable.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/jquery-treetable/stylesheets/jquery.treetable.theme.default.css">
+
 
 
 </head>
@@ -548,7 +546,23 @@
 </div>
 <!-- ./wrapper -->
 <jsp:include page="common/script-resource.jsp" />
-
-
+<!-- jQuery UI 1.11.4 -->
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button);
+</script>
+<script src="static/plugins/sparkline/jquery.sparkline.min.js"></script>
+<script src="static/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="static/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="static/plugins/knob/jquery.knob.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+<script src="static/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="static/plugins/datepicker/bootstrap-datepicker.js"></script>
+<!-- Morris.js charts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="static/plugins/morris/morris.min.js"></script><!-- Morris.js charts -->
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="static/dist/js/pages/dashboard.js"></script>
 </body>
 </html>

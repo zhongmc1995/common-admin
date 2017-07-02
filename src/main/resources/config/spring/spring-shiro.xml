@@ -125,7 +125,7 @@
     <bean id="filterChainManager" class="com.zmc.spring.CustomDefaultFilterChainManager">
         <property name="loginUrl" value="/login"/>
         <property name="successUrl" value="/"/>
-        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+        <property name="unauthorizedUrl" value="/unauthorized.html"/>
 
         <property name="customFilters">
             <util:map>
