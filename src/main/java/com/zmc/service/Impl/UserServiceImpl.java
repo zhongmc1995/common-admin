@@ -25,6 +25,10 @@ public class UserServiceImpl implements UserService {
         return userMapper.findAllUsers();
     }
 
+    public List<User> findAllUsersWithFullInfo() throws Exception {
+        return userMapper.findAllUsersWithFullInfo();
+    }
+
     public void addUser(User user) throws Exception {
         userMapper.insertUser(user);
     }

@@ -18,6 +18,10 @@ public interface UserMapper {
      * @return
      */
     List<User> findAllUsers() throws Exception;
+    /**
+     * 获取所有用户（用户详情信息）
+     */
+    List<User> findAllUsersWithFullInfo()throws Exception;
 
     /**
      * 新增一个用户

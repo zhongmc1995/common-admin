@@ -4,7 +4,7 @@
 <script src="static/plugins/jQuery/jquery-2.2.3.min.js"></script>
 
 <!-- Bootstrap 3.3.7 -->
-<script src="static/bootstrap/js/bootstrap.min.js"></script>
+<script src="static/bootstrap/js/bootstrap.js"></script>
 
 <!-- Sparkline -->
 <%--<script src="static/plugins/sparkline/jquery.sparkline.min.js"></script>--%>

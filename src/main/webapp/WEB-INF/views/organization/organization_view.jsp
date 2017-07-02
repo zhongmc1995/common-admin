@@ -74,10 +74,10 @@
                                         <td>${organization.create_by}</td>
                                         <td>${organization.update_by}</td>
                                         <td>
-                                            <shiro:hasPermission name="sysuser:update">
+                                            <shiro:hasPermission name="organization:update">
                                                 <a href="${pageContext.request.contextPath}/sysuser/${user.id}/update" class="btn btn-primary btn-sm">修改</a>
                                             </shiro:hasPermission>
-                                            <shiro:hasPermission name="sysuser:delete">
+                                            <shiro:hasPermission name="organization:delete">
                                                 <a href="${pageContext.request.contextPath}/sysuser/${user.id}/delete" class="btn btn-danger btn-sm">删除</a>
                                             </shiro:hasPermission>
                                         </td>

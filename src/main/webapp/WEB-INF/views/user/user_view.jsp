@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>Common-Admin</title>
     <base href="<%=basePath%>">
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -51,14 +51,16 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <table id="example2" class="table table-bordered table-striped">
+                            <table id="user_tb" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>用户名</th>
                                     <th>所属组织</th>
                                     <th>角色列表</th>
-                                    <th>创建人</th>
                                     <th>创建时间</th>
+                                    <th>创建人人</th>
+                                    <th>更新时间</th>
+                                    <th>更新人</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
@@ -67,9 +69,11 @@
                                     <tr>
                                         <td>${user.username}</td>
                                         <td>${user.organization.name}</td>
-                                        <td>xx</td>
-                                        <td>admin</td>
-                                        <td>2017-6-20</td>
+                                        <td>${user.rolesToStr}</td>
+                                        <td>${user.create_time}</td>
+                                        <td>${user.create_by}</td>
+                                        <td>${user.update_time}</td>
+                                        <td>${user.update_by}</td>
                                         <td>
                                             <shiro:hasPermission name="sysuser:update">
                                                 <a href="${pageContext.request.contextPath}/sysuser/${user.id}/update" class="btn btn-primary btn-sm">修改</a>
@@ -93,8 +97,10 @@
                                     <th>用户名</th>
                                     <th>所属组织</th>
                                     <th>角色列表</th>
-                                    <th>创建人</th>
                                     <th>创建时间</th>
+                                    <th>创建人人</th>
+                                    <th>更新时间</th>
+                                    <th>更新人</th>
                                     <th>操作</th>
                                 </tr>
                                 </tfoot>
@@ -120,7 +126,7 @@
 <script src="static/plugins/datatables/dataTables.bootstrap.min.js"></script>
 <script>
     $(function () {
-        $("#example2").DataTable();
+        $("#user_tb").DataTable();
     });
 </script>
 

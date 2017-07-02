@@ -1,9 +1,9 @@
 package com.zmc.common.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.zmc.common.BaseEntity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -67,7 +67,8 @@ public class User extends BaseEntity implements Serializable {
      * @return
      */
 
-    private List<Role> roles;
+    private List<Role> roles = new ArrayList<Role>();
+
     public String getUsername() {
         return username;
     }
@@ -134,5 +135,16 @@ public class User extends BaseEntity implements Serializable {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getRolesToStr(){
+        String rolesStr = "";
+        if (roles!=null&&roles.size()>0){
+            for (Role r : roles){
+                rolesStr += r.getName()+",";
+            }
+            rolesStr = rolesStr.substring(0,rolesStr.length()-1);
+        }
+        return rolesStr;
     }
 }

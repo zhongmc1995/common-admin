@@ -13,6 +13,7 @@ import java.util.Set;
  */
 public interface UserService {
     List<User> findAllUsers() throws Exception;
+    List<User> findAllUsersWithFullInfo()throws Exception;
     void addUser(User user)throws Exception;
     Boolean relatedOrganization(User user, Organization organization) throws Exception;
     User findUserByUsername(String username)throws Exception;

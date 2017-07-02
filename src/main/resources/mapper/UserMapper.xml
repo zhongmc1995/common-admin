@@ -54,6 +54,16 @@
         FROM sys_user u
     </select>
 
+    <!-- findAllUsersWithFullInfo -->
+    <select id="findAllUsersWithFullInfo" resultMap="UserWithFullInfo">
+        SELECT u.*,r.id r_id,r.name name,r.descr descr,r.available available,
+                r.create_time r_create_time,r.update_time r_update_time,
+                r.create_by r_create_by,r.update_by r_update_by
+        FROM sys_user u,sys_role r,sys_user_role ur
+        WHERE
+        u.id = ur.user_id AND r.id = ur.role_id
+    </select>
+
     <!-- 获取用户名的用户全部信息 -->
     <select id="findUserByUsernameWithFullInfo" parameterType="string" resultMap="UserWithFullInfo">
         SELECT u.*,r.id r_id,r.name name,r.descr descr,r.available available,
