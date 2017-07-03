@@ -11,8 +11,8 @@
 
     <!-- findAllResources -->
     <select id="findAllResources" resultType="Resource">
-        SELECT r.*
-        FROM sys_resource r
+        SELECT *
+        FROM sys_resource
     </select>
 
     <!-- deleteResourceById -->
