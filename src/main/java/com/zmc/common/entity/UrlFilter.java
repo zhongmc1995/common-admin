@@ -11,8 +11,6 @@ public class UrlFilter extends BaseEntity {
     private String roles; //所需要的角色，可省略
     private String permissions; //所需要的权限，可省略
 
-
-
     public String getName() {
         return name;
     }

@@ -41,7 +41,7 @@ public class UrlFilterServiceImpl implements UrlFilterService {
     }
 
 
-    public Boolean deleteUrlFilter(Long urlFilterId)throws Exception {
+    public Boolean deleteUrlFilter(Long urlFilterId){
         try {
             Integer result  = urlFilterMapper.deleteUrlFilter(urlFilterId);
             initFilterChain();

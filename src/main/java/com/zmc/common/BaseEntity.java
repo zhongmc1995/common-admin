@@ -1,5 +1,7 @@
 package com.zmc.common;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -28,10 +30,12 @@ public class BaseEntity implements Serializable {
     /**
      * 创建时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date create_time;
     /**
      * 更新时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date update_time;
     /**
      * 创建人

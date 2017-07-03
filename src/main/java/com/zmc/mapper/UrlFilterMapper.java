@@ -8,7 +8,7 @@ import java.util.List;
  * Created by zhongmc on 2017/7/2.
  */
 public interface UrlFilterMapper {
-    UrlFilter insertUrlFilter(UrlFilter urlFilter);
+    void insertUrlFilter(UrlFilter urlFilter);
     Integer updateUrlFilter(UrlFilter urlFilter);
     Integer deleteUrlFilter(Long id);
 

@@ -5,16 +5,17 @@
     <!-- insertUrlFilter -->
     <insert id="insertUrlFilter" parameterType="UrlFilter">
         INSERT INTO sys_url_filter(name,url,roles,permissions,create_time,update_time,create_by,update_by)
-        VALUES (#{name},{url},#{roles},#{permission},#{create_time},#{update_time},#{create_by},#{update_by})
+        VALUES (#{name},#{url},#{roles},#{permissions},#{create_time},#{update_time},#{create_by},#{update_by})
     </insert>
 
     <!-- updateUrlFilter -->
     <update id="updateUrlFilter" parameterType="UrlFilter">
         UPDATE
         sys_url_filter
-        SET name =#{name},url = #{url},roles = #{roles},permission = #{permission},
+        SET name =#{name},url = #{url},roles = #{roles},permissions = #{permissions},
             create_time = #{create_time},update_time = #{update_time},
             create_by = #{create_by},update_by = #{update_by}
+        WHERE id = #{id}
     </update>
 
     <!-- deleteUrlFilter -->
