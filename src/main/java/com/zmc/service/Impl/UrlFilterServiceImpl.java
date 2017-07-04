@@ -3,6 +3,8 @@ package com.zmc.service.Impl;
 import com.zmc.common.entity.UrlFilter;
 import com.zmc.mapper.UrlFilterMapper;
 import com.zmc.service.UrlFilterService;
+import com.zmc.web.bind.annotation.Log;
+import com.zmc.web.bind.handler.LogType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +22,12 @@ public class UrlFilterServiceImpl implements UrlFilterService {
     @Autowired
     private ShiroFilerChainManager shiroFilerChainManager;
 
+    @Log(type = LogType.INSERT,operation = "新增UrlFilter")
     public void addUrlFilter(UrlFilter urlFilter)throws Exception {
         urlFilterMapper.insertUrlFilter(urlFilter);
         initFilterChain();
     }
-
+    @Log(type = LogType.UPDATE,operation = "修改UrlFilter")
     public Boolean updateUrlFilter(UrlFilter urlFilter)throws Exception {
 
         try {
@@ -40,7 +43,7 @@ public class UrlFilterServiceImpl implements UrlFilterService {
         }
     }
 
-
+    @Log(type = LogType.DELETE,operation = "删除UrlFilter")
     public Boolean deleteUrlFilter(Long urlFilterId){
         try {
             Integer result  = urlFilterMapper.deleteUrlFilter(urlFilterId);
@@ -58,7 +61,7 @@ public class UrlFilterServiceImpl implements UrlFilterService {
     public UrlFilter findUrlFilterById(Long urlFilterId)throws Exception {
         return urlFilterMapper.findUrlFilterById(urlFilterId);
     }
-
+    @Log(type = LogType.QUERY,operation = "查询所有UrlFilter")
     public List<UrlFilter> findAllUrlFilters()throws Exception {
         return urlFilterMapper.findAllUrlFilters();
     }

@@ -6,7 +6,8 @@ import com.zmc.common.entity.Role;
 import com.zmc.common.entity.User;
 import com.zmc.mapper.UserMapper;
 import com.zmc.service.UserService;
-import jdk.nashorn.internal.runtime.ECMAException;
+import com.zmc.web.bind.annotation.Log;
+import com.zmc.web.bind.handler.LogType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ import java.util.Set;
  */
 @Service
 public class UserServiceImpl implements UserService {
+
     @Autowired
     private UserMapper userMapper;
 
@@ -46,11 +48,12 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+
     public User findUserByUsername(String username) throws Exception {
         List<User> users = userMapper.findUserByUsername(username);
         return (users==null || users.size()==0) ? null : users.get(0);
     }
-
+    @Log(type = LogType.UPDATE,operation = "修改密码")
     public Boolean modifyPassword(User user) {
         try {
             Integer result  = userMapper.modifyPassword(user);
@@ -63,7 +66,7 @@ public class UserServiceImpl implements UserService {
             return false;
         }
     }
-
+    @Log(type = LogType.DELETE,operation = "删除用户")
     public Boolean deleteUserById(Long id) throws Exception {
         try {
             Integer result  = userMapper.deleteUserById(id);

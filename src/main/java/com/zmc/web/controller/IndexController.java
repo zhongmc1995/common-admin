@@ -1,15 +1,15 @@
 package com.zmc.web.controller;
 
-import com.google.code.kaptcha.servlet.KaptchaExtend;
+
 import com.zmc.common.entity.Organization;
-import com.zmc.common.entity.Resource;
 import com.zmc.common.entity.User;
-import com.zmc.common.vo.Menu;
+import com.zmc.service.LogRecordService;
 import com.zmc.service.OrganizationService;
 import com.zmc.service.ResourceService;
 import com.zmc.service.UserService;
-import com.zmc.utils.MenuHelper;
 import com.zmc.web.bind.annotation.CurrentUser;
+import com.zmc.web.bind.annotation.Log;
+import com.zmc.web.bind.handler.LogType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -35,7 +31,10 @@ public class IndexController {
     private OrganizationService organizationService;
     @Autowired
     private ResourceService resourceService;
+    @Autowired
+    private LogRecordService logRecordService;
 
+    /*@Log(type = LogType.QUERY,operation = "访问首页")*/
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String indexPage(@CurrentUser User currentUser, Model model) throws Exception {
         /*List<Resource> lisi = resourceService.findWildResourcesByUsername(currentUser.getUsername());
@@ -44,13 +43,14 @@ public class IndexController {
         return "index";
     }
 
+    /*@Log(type = LogType.QUERY,operation = "查询所有用户")*/
     @RequestMapping(value = "/users",method = RequestMethod.GET)
     public @ResponseBody List<User> userList() throws Exception {
         List<User>lists = userService.findAllUsers();
         return lists;
     }
 
-
+    /*@Log(type = LogType.QUERY,operation = "查询所有部门")*/
     @RequestMapping(value = "/organizations",method = RequestMethod.GET)
     public @ResponseBody List<Organization> organizationList() throws Exception {
         return organizationService.findAllOrganizations();
@@ -64,5 +64,11 @@ public class IndexController {
     @RequestMapping(value = "/unauthorized.html",method = RequestMethod.GET)
     public String unauthorizedPage(){
         return "common/unauthorized";
+    }
+
+    @RequestMapping(value = "/log/log-view.html",method = RequestMethod.GET)
+    public String logViewPage(Model model) throws Exception {
+        model.addAttribute("logs",logRecordService.findAllLogRecords());
+        return "log/log_view";
     }
 }

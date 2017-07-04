@@ -5,6 +5,8 @@ import com.zmc.common.entity.UrlFilter;
 import com.zmc.common.entity.User;
 import com.zmc.service.UrlFilterService;
 import com.zmc.web.bind.annotation.CurrentUser;
+import com.zmc.web.bind.annotation.Log;
+import com.zmc.web.bind.handler.LogType;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,7 @@ import static org.apache.shiro.web.filter.mgt.DefaultFilter.user;
 public class UrlFilterController {
     @Autowired
     private UrlFilterService urlFilterService;
+    @Log(type = LogType.QUERY,operation = "查询UrlFiltr")
     @RequestMapping(value = "/urlFilter-view.html",method = RequestMethod.GET)
     public String urlFilterPage(Model model) throws Exception {
         model.addAttribute("urlFilters",urlFilterService.findAllUrlFilters());

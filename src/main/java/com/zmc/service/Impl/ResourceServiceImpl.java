@@ -4,6 +4,8 @@ import com.zmc.common.entity.Resource;
 import com.zmc.mapper.ResourceMapper;
 import com.zmc.mapper.UserMapper;
 import com.zmc.service.ResourceService;
+import com.zmc.web.bind.annotation.Log;
+import com.zmc.web.bind.handler.LogType;
 import org.apache.shiro.authz.permission.WildcardPermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,7 @@ public class ResourceServiceImpl implements ResourceService {
         resourceMapper.insertResource(resource);
     }
 
+    @Log(type = LogType.QUERY,operation = "查询所有资源")
     public List<Resource> findAllResources() throws Exception {
         return resourceMapper.findAllResources();
     }
@@ -44,7 +47,6 @@ public class ResourceServiceImpl implements ResourceService {
             return false;
         }
     }
-
     public List<Resource> findWildResourcesByUsername(String username) throws Exception {
         List<Resource> wildResourcesForUser = new ArrayList<Resource>();
         Set<Resource> resourcesForUser = userMapper.findResourceByUsername(username);
