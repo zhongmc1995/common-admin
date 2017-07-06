@@ -16,6 +16,8 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- css -->
     <link rel="stylesheet" href="static/plugins/datatables/dataTables.bootstrap.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="static/plugins/select2/select2.min.css">
     <jsp:include page="../common/css-resource.jsp"/>
 
 
@@ -47,7 +49,12 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">用户列表</h3>
+                            <h3 class="box-title">
+                                <shiro:hasPermission name="sysuser:create">
+                                    <button type="button" data-toggle="modal" data-target="#add_modal"
+                                            class="btn btn-block btn-primary">新增</button>
+                                </shiro:hasPermission>
+                            </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -119,15 +126,122 @@
     <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+<!--add modal-->
+<div class="modal fade" id="add_modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">新增</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" id="add_form">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label>用户名</label>
+                            <input type="text" name="username" class="form-control" placeholder="用户名（必填）">
+                        </div>
+                        <div class="form-group">
+                            <label>初始密码</label>
+                            <input type="text" name="password" class="form-control" placeholder="初始密码（必填）">
+                        </div>
+                        <div class="form-group">
+                            <label>邮箱</label>
+                            <input type="text" name="email" class="form-control" placeholder="邮箱（选填）">
+                        </div>
+                        <div class="form-group">
+                            <label>联系电话</label>
+                            <input type="text" name="phone" class="form-control" placeholder="联系电话（选填）">
+                        </div>
+                        <div class="form-group">
+                            <label>角色</label>
+                            <select name="roles" class="form-control select2" multiple="multiple" data-placeholder="角色（选填）" style="width: 100%;">
+                                <c:forEach items="${roles}" var="role">
+                                    <option value="${role.id}">${role.name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>所属部门</label>
+                            <select class="form-control select2" data-placeholder="所属部门（选填）" style="width: 100%;">
+                                <c:forEach items="${organizations}" var="o">
+                                    <option value="${o.id}">${o.name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+                <button type="button" id="add_submit" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 
+<!--warn modal-->
+<div class="modal modal-danger fade" id="warn_modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">警告</h4>
+            </div>
+            <div class="modal-body" id="text">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" data-dismiss="modal">确定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 <!-- DataTables -->
 <jsp:include page="../common/script-resource.jsp" />
 <script src="static/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="static/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- Select2 -->
+<script src="static/plugins/select2/select2.full.min.js"></script>
 <script>
     $(function () {
         $("#user_tb").DataTable();
     });
+    $(".select2").select2();
+    /**
+     * 系统用户添加提交
+     */
+    $("#add_submit").click(function () {
+        console.log("submit...")
+        $.ajax({
+            type:"POST",
+            url:"sysuser/sysuser-create",
+            data:getFormJson("#add_form"),
+            dataType:"json",
+            success:function (data) {
+                if (data.meta.success){
+                    //添加成功
+                    $("#add_modal").modal('hide');
+                    window.location = "sysuser/sysuser-view.html";
+                }else{
+                    modalShow("#warn_modal",data.meta.message);
+                }
+            },
+            error:function(error){
+                console.log(error);
+            }
+        });
+    });
+
+    function modalShow(id,content) {
+        $("#text").html(content);
+        $(id).modal('show');
+    }
 </script>
 
 </body>

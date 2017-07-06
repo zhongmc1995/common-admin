@@ -56,12 +56,19 @@
 
     <!-- findAllUsersWithFullInfo -->
     <select id="findAllUsersWithFullInfo" resultMap="UserWithFullInfo">
-        SELECT u.*,r.id r_id,r.name name,r.descr descr,r.available available,
+        /*SELECT u.*,r.id r_id,r.name name,r.descr descr,r.available available,
                 r.create_time r_create_time,r.update_time r_update_time,
                 r.create_by r_create_by,r.update_by r_update_by
         FROM sys_user u,sys_role r,sys_user_role ur
         WHERE
-        u.id = ur.user_id AND r.id = ur.role_id
+        u.id = ur.user_id AND r.id = ur.role_id*/
+        SELECT t.*,r.id r_id,r.name name,r.descr descr,r.available available,
+                r.create_time r_create_time,r.update_time r_update_time,
+                r.create_by r_create_by,r.update_by r_update_by
+        FROM
+          (SELECT DISTINCT u.*,ur.role_id
+              FROM sys_user u LEFT JOIN sys_user_role ur ON ur.user_id=u.id
+          ) t LEFT JOIN sys_role r ON t.role_id = r.id
     </select>
 
     <!-- 获取用户名的用户全部信息 -->

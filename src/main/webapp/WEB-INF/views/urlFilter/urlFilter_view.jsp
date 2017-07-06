@@ -365,24 +365,7 @@
         $("#update_modal").modal('show');
     }
     
-    function getFormJson(form) {
-        var data = {};
-        var formObj = $(form).serializeArray();
-        console.log(formObj);
-        $.each(formObj,function(){
-            if (data[this.name]!==undefined){
-                if (!data[this.name].push){
-                    data[this.name] = [data[this.name]];
-                }
-                data[this.name].push(this.value);
-            }else{
-                data[this.name] = this.value;
-            }
 
-        });
-        console.log(data);
-        return data;
-    }
     function modalShow(id,content) {
         $("#text").html(content);
         $(id).modal('show');

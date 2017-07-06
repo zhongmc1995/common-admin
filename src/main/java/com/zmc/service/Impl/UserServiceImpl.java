@@ -6,6 +6,7 @@ import com.zmc.common.entity.Role;
 import com.zmc.common.entity.User;
 import com.zmc.mapper.UserMapper;
 import com.zmc.service.UserService;
+import com.zmc.utils.EncryptHelper;
 import com.zmc.web.bind.annotation.Log;
 import com.zmc.web.bind.handler.LogType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,16 @@ public class UserServiceImpl implements UserService {
         return userMapper.findAllUsersWithFullInfo();
     }
 
+    /**
+     * 系统用户新增
+     * @param user
+     * @throws Exception
+     */
+
     public void addUser(User user) throws Exception {
+        // 对user进行加密
+        EncryptHelper encryptHelper = new EncryptHelper();
+        encryptHelper.encrypt(user);
         userMapper.insertUser(user);
     }
 
