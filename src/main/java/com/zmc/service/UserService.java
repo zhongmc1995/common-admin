@@ -4,6 +4,7 @@ import com.zmc.common.entity.Organization;
 import com.zmc.common.entity.Resource;
 import com.zmc.common.entity.Role;
 import com.zmc.common.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Set;
@@ -28,4 +29,18 @@ public interface UserService {
      * @return
      */
     Set<Resource> findResourceByUsername(String username)throws Exception;
+
+    /**
+     * 用户关联角色
+     */
+    void relatedRole(Long user_id,Long role_id)throws Exception;
+
+    /**
+     * 角色用户取消关联
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    Boolean unRelatedRole(Long id) throws Exception;
+
 }

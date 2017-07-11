@@ -106,4 +106,21 @@ public class UserServiceImpl implements UserService {
     public Set<Resource> findResourceByUsername(String username)throws Exception {
         return userMapper.findResourceByUsername(username);
     }
+
+    public void relatedRole(Long user_id, Long role_id) throws Exception {
+        userMapper.relatedRole(user_id,role_id);
+    }
+
+    public Boolean unRelatedRole(Long id) throws Exception {
+        try {
+            Integer result  = userMapper.unRelatedRole(id);
+            if (result>0)
+                return true;
+            else
+                return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

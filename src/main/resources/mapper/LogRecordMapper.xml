@@ -11,4 +11,5 @@
         SELECT type,content,operation,create_time,create_by
         FROM sys_log
     </select>
+
 </mapper>

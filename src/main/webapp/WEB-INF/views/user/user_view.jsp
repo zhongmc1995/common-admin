@@ -87,7 +87,8 @@
                                             </shiro:hasPermission>
 
                                             <shiro:hasPermission name="sysuser:delete">
-                                                <a href="${pageContext.request.contextPath}/sysuser/${user.id}/delete" class="btn btn-danger btn-sm">删除</a>
+                                                <a href="#" id="del_a" data-myid="${user.id}"
+                                                   data-toggle="modal" data-target="#del_modal" class="btn btn-danger btn-sm">删除</a>
                                             </shiro:hasPermission>
 
                                             <shiro:hasPermission name="sysuser:update">
@@ -148,7 +149,7 @@
                         </div>
                         <div class="form-group">
                             <label>邮箱</label>
-                            <input type="text" name="email" class="form-control" placeholder="邮箱（选填）">
+                            <input type="email" name="email" class="form-control" placeholder="邮箱（选填）">
                         </div>
                         <div class="form-group">
                             <label>联系电话</label>
@@ -164,7 +165,7 @@
                         </div>
                         <div class="form-group">
                             <label>所属部门</label>
-                            <select class="form-control select2" data-placeholder="所属部门（选填）" style="width: 100%;">
+                            <select name="organization" class="form-control select2" data-placeholder="所属部门（选填）" style="width: 100%;">
                                 <c:forEach items="${organizations}" var="o">
                                     <option value="${o.id}">${o.name}</option>
                                 </c:forEach>
@@ -182,7 +183,27 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-
+<!--del modal-->
+<div class="modal modal-danger fade" id="del_modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">警告</h4>
+            </div>
+            <div class="modal-body">
+                你确定要删除这条记录吗？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+                <button type="button" id="del_submit" class="btn btn-outline" data-dismiss="modal">确定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 <!--warn modal-->
 <div class="modal modal-danger fade" id="warn_modal" aria-hidden="true">
     <div class="modal-dialog">
@@ -211,32 +232,56 @@
 <script>
     $(function () {
         $("#user_tb").DataTable();
+
+        $("#add_submit").click(function () {
+            console.log("submit...");
+            $.ajax({
+                type:"POST",
+                url:"sysuser/sysuser-create",
+                data:getFormJson("#add_form"),
+                dataType:"json",
+                success:function (data) {
+                    if (data.meta.success){
+                        //添加成功
+                        $("#add_modal").modal('hide');
+                        window.location = "sysuser/sysuser-view.html";
+                    }else{
+                        modalShow("#warn_modal",data.meta.message);
+                    }
+                },
+                error:function(error){
+                    console.log(error);
+                }
+            });
+        });
+        /**
+         * 删除
+         */
+        $("#del_submit").click(function () {
+            var id = $("#del_a").data('myid');
+            console.log(id);
+            $.ajax({
+                type:"GET",
+                url:"sysuser/"+id+"/delete",
+                success:function (data) {
+                    console.log(data);
+                    if (data.meta.success){
+                        //添加成功
+                        window.location = "sysuser/sysuser-view.html";
+                    }else{
+                        modalShow("#warn_modal",data.meta.message);
+                    }
+                },
+                error:function(error){
+                    console.log(error);
+                }
+            })
+        });
     });
     $(".select2").select2();
     /**
      * 系统用户添加提交
      */
-    $("#add_submit").click(function () {
-        console.log("submit...")
-        $.ajax({
-            type:"POST",
-            url:"sysuser/sysuser-create",
-            data:getFormJson("#add_form"),
-            dataType:"json",
-            success:function (data) {
-                if (data.meta.success){
-                    //添加成功
-                    $("#add_modal").modal('hide');
-                    window.location = "sysuser/sysuser-view.html";
-                }else{
-                    modalShow("#warn_modal",data.meta.message);
-                }
-            },
-            error:function(error){
-                console.log(error);
-            }
-        });
-    });
 
     function modalShow(id,content) {
         $("#text").html(content);

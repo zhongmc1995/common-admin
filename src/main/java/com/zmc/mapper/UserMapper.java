@@ -43,4 +43,8 @@ public interface UserMapper {
     Set<Role> findRolesByUsername(String username)throws Exception;
 
     Set<Resource> findResourceByUsername(String username);
+
+    void relatedRole(@Param("user_id") Long user_id,@Param("role_id") Long role_id)throws Exception;
+
+    Integer unRelatedRole(Long id) throws Exception;
 }

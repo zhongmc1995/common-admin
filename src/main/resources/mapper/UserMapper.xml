@@ -91,8 +91,8 @@
     <!-- 新增用户 -->
     <insert id="insertUser" parameterType="User">
         INSERT
-        INTO sys_user(username,password,email,phone,salt,locked,organization_id,create_time,update_time,create_by,update_by)
-        VALUES (#{username},#{password},#{email},#{phone},#{salt},#{locked},#{organization.id},#{create_time},#{update_time},#{create_by},#{update_by})
+        INTO sys_user(id,username,password,email,phone,salt,locked,organization_id,create_time,update_time,create_by,update_by)
+        VALUES (#{id},#{username},#{password},#{email},#{phone},#{salt},#{locked},#{organization.id},#{create_time},#{update_time},#{create_by},#{update_by})
     </insert>
 
     <!-- 用户关联组织 -->
@@ -140,4 +140,16 @@
 			and r.id = rr.role_id and res.id = rr.resource_id
 			AND u.username = #{username}
     </select>
+
+    <!-- 用户关联角色 -->
+    <insert id="relatedRole">
+        INSERT INTO sys_user_role(user_id,role_id)
+        VALUES (#{user_id},#{role_id})
+    </insert>
+
+    <delete id="unRelatedRole" parameterType="long">
+        DELETE
+        FROM sys_user_role
+        WHERE user_id = #{id}
+    </delete>
 </mapper>
