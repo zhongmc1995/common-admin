@@ -70,6 +70,7 @@
                                     <th>operation</th>
                                 </tr>
                                 </thead>
+                                <input id="id_box" type="hidden" value="">
                                 <tbody>
                                 <c:forEach items="${urlFilters}" var="urlFilter">
                                     <tr>
@@ -87,7 +88,7 @@
                                             </shiro:hasPermission>
 
                                             <shiro:hasPermission name="urlFilter:delete">
-                                                <a href="#" id="del_a" data-myid="${urlFilter.id}"
+                                                <a href="#" data-myid="${urlFilter.id}" onclick="initDelId(this)"
                                                    data-toggle="modal" data-target="#del_modal" class="btn btn-danger btn-sm">删除</a>
                                             </shiro:hasPermission>
                                         </td>
@@ -303,7 +304,7 @@
          * 删除
          */
         $("#del_submit").click(function () {
-            var id = $("#del_a").data('myid');
+            var id = $("#id_box").val();
             console.log(id);
             $.ajax({
                 type:"GET",
@@ -352,6 +353,14 @@
         });
         
     });
+
+    function initDelId(obj){
+        console.log(obj);
+        $("#id_box").val($(obj).data("myid"));
+        console.log($("#id_box").val());
+        return true;
+    }
+
     function updateUrlFilter(obj) {
         var tds = $(obj).parents('tr').find('td');
         console.log(tds);

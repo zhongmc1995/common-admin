@@ -71,6 +71,7 @@
                                     <th>操作</th>
                                 </tr>
                                 </thead>
+                                <input id="id_box" type="hidden" value="">
                                 <tbody>
                                 <c:forEach items="${users}" var="user">
                                     <tr>
@@ -87,7 +88,7 @@
                                             </shiro:hasPermission>
 
                                             <shiro:hasPermission name="sysuser:delete">
-                                                <a href="#" id="del_a" data-myid="${user.id}"
+                                                <a href="#" data-myid="${user.id}" onclick="initDelId(this)"
                                                    data-toggle="modal" data-target="#del_modal" class="btn btn-danger btn-sm">删除</a>
                                             </shiro:hasPermission>
 
@@ -258,7 +259,7 @@
          * 删除
          */
         $("#del_submit").click(function () {
-            var id = $("#del_a").data('myid');
+            var id = $("#id_box").val();
             console.log(id);
             $.ajax({
                 type:"GET",
@@ -282,7 +283,12 @@
     /**
      * 系统用户添加提交
      */
-
+    function initDelId(obj){
+        console.log(obj)
+        $("#id_box").val($(obj).data("myid"));
+        console.log($("#id_box").val());
+        return true;
+    }
     function modalShow(id,content) {
         $("#text").html(content);
         $(id).modal('show');
