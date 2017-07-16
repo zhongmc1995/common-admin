@@ -10,20 +10,18 @@ public class Organization extends BaseEntity {
      * 名称
      */
     private String name;
-    /**
-     * 父组织ID
-     */
-    private Long parent_id;
-    /**
-     * 所有的父组织ID字符串
-     */
-    private String parent_ids;
+
     /**
      * 是否可用
      * 0：不可用
      * 1：可用
      */
     private  Integer available;
+
+    /**
+     * 描述
+     */
+    private String describe;
 
     public String getName() {
         return name;
@@ -33,21 +31,6 @@ public class Organization extends BaseEntity {
         this.name = name;
     }
 
-    public Long getParent_id() {
-        return parent_id;
-    }
-
-    public void setParent_id(Long parent_id) {
-        this.parent_id = parent_id;
-    }
-
-    public String getParent_ids() {
-        return parent_ids;
-    }
-
-    public void setParent_ids(String parent_ids) {
-        this.parent_ids = parent_ids;
-    }
 
     public Integer getAvailable() {
         return available;
@@ -57,12 +40,18 @@ public class Organization extends BaseEntity {
         this.available = available;
     }
 
+    public String getDescribe() {
+        return describe;
+    }
+
+    public void setDescribe(String describe) {
+        this.describe = describe;
+    }
+
     @Override
     public String toString() {
         return "Organization{" +
                 "name='" + name + '\'' +
-                ", parent_id=" + parent_id +
-                ", parent_ids='" + parent_ids + '\'' +
                 ", available=" + available +
                 '}';
     }

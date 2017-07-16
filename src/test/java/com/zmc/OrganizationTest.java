@@ -32,8 +32,6 @@ public class OrganizationTest extends BaseTest {
     public void addOrganization() throws Exception {
         Organization organization = new Organization();
         organization.setName("产品研发部");
-        organization.setParent_id(1L);
-        organization.setParent_ids("0/1/");
         organization.setAvailable(1);
         organization.setCreate_time(new Date());
         organization.setCreate_by("admin");
