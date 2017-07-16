@@ -10,4 +10,6 @@ import java.util.List;
 public interface LogRecordService {
     void addLogRecord(LogRecord logRecord)throws Exception;
     List<LogRecord> findAllLogRecords()throws Exception;
+
+    Boolean deleteLogRecordById(Long id)throws Exception;
 }

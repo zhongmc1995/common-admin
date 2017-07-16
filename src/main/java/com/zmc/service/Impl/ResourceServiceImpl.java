@@ -8,6 +8,7 @@ import com.zmc.web.bind.annotation.Log;
 import com.zmc.web.bind.handler.LogType;
 import org.apache.shiro.authz.permission.WildcardPermission;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -47,6 +48,8 @@ public class ResourceServiceImpl implements ResourceService {
             return false;
         }
     }
+
+    @Cacheable(value="menu-resource",key="#p0")
     public List<Resource> findWildResourcesByUsername(String username) throws Exception {
         List<Resource> wildResourcesForUser = new ArrayList<Resource>();
         Set<Resource> resourcesForUser = userMapper.findResourceByUsername(username);

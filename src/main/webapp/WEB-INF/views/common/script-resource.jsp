@@ -48,4 +48,11 @@
         console.log(data);
         return data;
     }
+
+    function initDelId(obj){
+        console.log(obj);
+        $("#id_box").val($(obj).data("myid"));
+        console.log($("#id_box").val());
+        return true;
+    }
 </script>

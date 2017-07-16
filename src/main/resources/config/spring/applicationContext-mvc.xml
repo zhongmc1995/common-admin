@@ -15,6 +15,7 @@
             <bean class="com.zmc.web.bind.handler.CurrentUserMethodArgumentResolver"></bean>
         </mvc:argument-resolvers>
     </mvc:annotation-driven>
+
     <!--<aop:aspectj-autoproxy proxy-target-class="true"/>
     <bean id="systemLogAspect" class="com.zmc.web.bind.handler.SystemLogAspect"></bean>-->
 

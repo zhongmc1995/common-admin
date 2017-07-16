@@ -10,4 +10,5 @@ import java.util.List;
 public interface LogRecordMapper {
     void insertLogRecord(LogRecord logRecord)throws Exception;
     List<LogRecord> findAllLogRecords()throws Exception;
+    Integer deleteLogRecord(Long id)throws Exception;
 }

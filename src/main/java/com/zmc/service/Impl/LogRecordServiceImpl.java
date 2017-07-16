@@ -22,4 +22,17 @@ public class LogRecordServiceImpl implements LogRecordService {
     public List<LogRecord> findAllLogRecords() throws Exception {
         return logRecordMapper.findAllLogRecords();
     }
+
+    public Boolean deleteLogRecordById(Long id) throws Exception {
+        try {
+            Integer result = logRecordMapper.deleteLogRecord(id);
+            if (result>0)
+                return true;
+            else
+                return false;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

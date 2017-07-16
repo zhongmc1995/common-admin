@@ -5,40 +5,47 @@
  */
 package com.zmc.spring;
 
+import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.springframework.context.ApplicationContextAware;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
+public class SpringUtils implements ApplicationContextAware{
+    public SpringUtils(){}
 
-public class SpringUtils implements ServletContextListener {
-
-    private static WebApplicationContext springContext;
-
-    public void contextInitialized(ServletContextEvent event) {
-        springContext = WebApplicationContextUtils.getWebApplicationContext(event.getServletContext());
-    }
-
-    public void contextDestroyed(ServletContextEvent event) {
-
-    }
-
-    public static ApplicationContext getApplicationContext() {
-        return springContext;
-    }
-
-    public SpringUtils() {
+    private static ApplicationContext applicationContext;
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
     }
 
 
-    public static <T> T getBean(Class<T> requiredType){
+    /**
+     * 从静态变量ApplicationContext中取得Bean, 自动转型为所赋值对象的类型.
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T getBean(String name) {
+        checkApplicationContext();
+        return (T) applicationContext.getBean(name);
+    }
 
-        if(springContext == null){
+    /**
+     * 从静态变量ApplicationContext中取得Bean, 自动转型为所赋值对象的类型.
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T getBean(Class<T> clazz) {
+        checkApplicationContext();
+        return (T) applicationContext.getBeansOfType(clazz);
+    }
 
-            throw new RuntimeException("springContext is null.");
+    /**
+     * 清除applicationContext静态变量.
+     */
+    public static void cleanApplicationContext() {
+        applicationContext = null;
+    }
+
+    private static void checkApplicationContext() {
+        if (applicationContext == null) {
+            throw new IllegalStateException("applicaitonContext未注入,请在applicationContext.xml中定义SpringContextHolder");
         }
-        return springContext.getBean(requiredType);
     }
-
 }

@@ -263,12 +263,6 @@
 </div>
 <!-- ./wrapper -->
 
-<div class="alert alert-success alert-dismissible" style="margin-top: 0px">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <h4><i class="icon fa fa-check"></i> Alert!</h4>
-    Success alert preview. This alert is dismissable.
-</div>
-
 <!-- DataTables -->
 <jsp:include page="../common/script-resource.jsp" />
 <script src="static/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -353,13 +347,6 @@
         });
         
     });
-
-    function initDelId(obj){
-        console.log(obj);
-        $("#id_box").val($(obj).data("myid"));
-        console.log($("#id_box").val());
-        return true;
-    }
 
     function updateUrlFilter(obj) {
         var tds = $(obj).parents('tr').find('td');

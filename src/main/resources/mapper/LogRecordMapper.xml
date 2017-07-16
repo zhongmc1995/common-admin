@@ -8,8 +8,13 @@
     </insert>
 
     <select id="findAllLogRecords" resultType="logRecord">
-        SELECT type,content,operation,create_time,create_by
+        SELECT id, type,content,operation,create_time,create_by
         FROM sys_log
     </select>
 
+    <delete id="deleteLogRecord" parameterType="long">
+        DELETE
+        FROM sys_log
+        WHERE id = #{id}
+    </delete>
 </mapper>

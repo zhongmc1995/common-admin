@@ -3,13 +3,9 @@ package com.zmc.web.controller;
 
 import com.zmc.common.entity.Organization;
 import com.zmc.common.entity.User;
-import com.zmc.service.LogRecordService;
 import com.zmc.service.OrganizationService;
-import com.zmc.service.ResourceService;
 import com.zmc.service.UserService;
 import com.zmc.web.bind.annotation.CurrentUser;
-import com.zmc.web.bind.annotation.Log;
-import com.zmc.web.bind.handler.LogType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,10 +25,6 @@ public class IndexController {
     private UserService userService;
     @Autowired
     private OrganizationService organizationService;
-    @Autowired
-    private ResourceService resourceService;
-    @Autowired
-    private LogRecordService logRecordService;
 
     /*@Log(type = LogType.QUERY,operation = "访问首页")*/
     @RequestMapping(value = "/",method = RequestMethod.GET)
@@ -61,14 +53,14 @@ public class IndexController {
         return userService.findUserByUsernameWithFullInfo(username);
     }
 
+    /**
+     * 无权访问跳转
+     * @return
+     */
     @RequestMapping(value = "/unauthorized.html",method = RequestMethod.GET)
     public String unauthorizedPage(){
         return "common/unauthorized";
     }
 
-    @RequestMapping(value = "/log/log-view.html",method = RequestMethod.GET)
-    public String logViewPage(Model model) throws Exception {
-        model.addAttribute("logs",logRecordService.findAllLogRecords());
-        return "log/log_view";
-    }
+
 }

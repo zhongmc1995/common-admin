@@ -154,7 +154,7 @@
                         </div>
                         <div class="form-group">
                             <label>联系电话</label>
-                            <input type="text" name="phone" class="form-control" placeholder="联系电话（选填）">
+                            <input type="text" name="phone" class="form-control" data-inputmask='"mask": "(+86) 999-9999-9999"' data-mask placeholder="联系电话（选填）">
                         </div>
                         <div class="form-group">
                             <label>角色</label>
@@ -230,9 +230,15 @@
 <script src="static/plugins/datatables/dataTables.bootstrap.min.js"></script>
 <!-- Select2 -->
 <script src="static/plugins/select2/select2.full.min.js"></script>
+
+<!-- InputMask -->
+<script src="static/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="static/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="static/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 <script>
     $(function () {
         $("#user_tb").DataTable();
+        $("[data-mask]").inputmask();
 
         $("#add_submit").click(function () {
             console.log("submit...");
@@ -283,12 +289,6 @@
     /**
      * 系统用户添加提交
      */
-    function initDelId(obj){
-        console.log(obj)
-        $("#id_box").val($(obj).data("myid"));
-        console.log($("#id_box").val());
-        return true;
-    }
     function modalShow(id,content) {
         $("#text").html(content);
         $(id).modal('show');

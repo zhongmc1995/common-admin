@@ -12,6 +12,6 @@
     <aop:aspectj-autoproxy proxy-target-class="true"/>
     <bean id="systemLogAspect" class="com.zmc.web.bind.handler.LogAspect"></bean>
     <context:component-scan base-package="com.zmc.service"></context:component-scan>
-
+    <bean class="com.zmc.spring.SpringUtils"></bean>
 
 </beans>
