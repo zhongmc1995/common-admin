@@ -5,17 +5,13 @@ import com.zmc.common.vo.Menu;
 import com.zmc.constant.Constant;
 import com.zmc.service.ResourceService;
 import com.zmc.service.UserService;
-import com.zmc.spring.SpringUtils;
 import com.zmc.utils.MenuHelper;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.web.filter.PathMatchingFilter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.Cache;
-import org.springframework.cache.CacheManager;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import java.util.Collection;
 import java.util.List;
 
 /**

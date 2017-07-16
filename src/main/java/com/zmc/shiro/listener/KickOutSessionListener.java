@@ -8,7 +8,9 @@ import org.apache.shiro.session.SessionListener;
 import java.io.Serializable;
 import java.util.LinkedList;
 
-
+/**
+ * Created by zhongmc on 2017/6/29.
+ */
 public class KickOutSessionListener implements SessionListener {
 
     private Cache<String, LinkedList<Serializable>> cache;

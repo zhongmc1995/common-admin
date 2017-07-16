@@ -1,14 +1,12 @@
-/**
- * Copyright (c) 2005-2012 https://github.com/zhangkaitao
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- */
+
 package com.zmc.spring;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-
+/**
+ * Created by zhongmc on 2017/6/29.
+ */
 public class SpringUtils implements ApplicationContextAware{
     public SpringUtils(){}
 
