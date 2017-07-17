@@ -80,7 +80,7 @@ public class OrganizationController {
     }
 
 
-    @RequestMapping(value = "/{id}/update",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/update")
     @ResponseBody
     public Response organizationUpdate(@PathVariable String id,Organization organization){
         Response response = new Response();
@@ -93,7 +93,7 @@ public class OrganizationController {
 
         String username = (String) SecurityUtils.getSubject().getPrincipal();
         organization.setUpdate_time(new Date());
-        organization.setCreate_by(username);
+        organization.setUpdate_by(username);
 
         Boolean result = organizationService.updateOrganization(organization);
         if (result){

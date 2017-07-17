@@ -30,6 +30,8 @@ public interface UserMapper {
      */
     void insertUser(User user)throws Exception;
 
+    Integer updateUser(User user)throws Exception;
+
     Integer relatedOrganization(@Param("u") User user, @Param("o") Organization organization) throws Exception;
 
     List<User> findUserByUsername(String username)throws Exception;

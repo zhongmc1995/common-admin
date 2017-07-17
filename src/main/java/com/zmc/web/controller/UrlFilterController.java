@@ -100,7 +100,7 @@ public class UrlFilterController {
      */
     @RequestMapping("/{idStr}/update")
     @ResponseBody
-    public Response updataUrlFilter(@PathVariable String idStr,UrlFilter urlFilter){
+    public Response updateUrlFilter(@PathVariable String idStr,UrlFilter urlFilter){
         Response response = new Response();
         if (StringUtils.isEmpty(urlFilter.getName())){
             return response.failure("名称不能为空");

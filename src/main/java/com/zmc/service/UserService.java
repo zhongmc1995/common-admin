@@ -22,6 +22,7 @@ public interface UserService {
     Boolean deleteUserById(Long id)throws Exception;
     User findUserByUsernameWithFullInfo(String username)throws Exception;
     Set<Role> findRolesByUsername(String usernmae)throws Exception;
+    Boolean updateUser(User user)throws Exception;
 
     /**
      * 查询该用户具有的权限字符串

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -62,6 +63,8 @@
                                 <thead>
                                 <tr>
                                     <th>用户名</th>
+                                    <th>联系电话</th>
+                                    <th>邮箱</th>
                                     <th>所属组织</th>
                                     <th>角色列表</th>
                                     <th>创建时间</th>
@@ -76,15 +79,17 @@
                                 <c:forEach items="${users}" var="user">
                                     <tr>
                                         <td>${user.username}</td>
+                                        <td>${user.phone}</td>
+                                        <td>${user.email}</td>
                                         <td>${user.organization.name}</td>
                                         <td>${user.rolesToStr}</td>
-                                        <td>${user.create_time}</td>
+                                        <td> <fmt:formatDate value="${user.create_time}" pattern="yyyy-MM-dd"></fmt:formatDate></td>
                                         <td>${user.create_by}</td>
-                                        <td>${user.update_time}</td>
+                                        <td> <fmt:formatDate value="${user.update_time}" pattern="yyyy-MM-dd"></fmt:formatDate></td>
                                         <td>${user.update_by}</td>
                                         <td>
                                             <shiro:hasPermission name="sysuser:update">
-                                                <a href="${pageContext.request.contextPath}/sysuser/${user.id}/update" class="btn btn-primary btn-sm">修改</a>
+                                                <a href="javascript:void(0)" onclick="initUpdateModal(this)" data-myid="${user.id}" class="btn btn-primary btn-sm">修改</a>
                                             </shiro:hasPermission>
 
                                             <shiro:hasPermission name="sysuser:delete">
@@ -104,6 +109,8 @@
                                 <tfoot>
                                 <tr>
                                     <th>用户名</th>
+                                    <th>联系电话</th>
+                                    <th>邮箱</th>
                                     <th>所属组织</th>
                                     <th>角色列表</th>
                                     <th>创建时间</th>
@@ -178,6 +185,62 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
                 <button type="button" id="add_submit" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!--update modal-->
+<div class="modal fade" id="update_modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">新增</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" id="update_form">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label>用户编号</label>
+                            <input type="text" name="id" class="form-control" placeholder="" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>用户名</label>
+                            <input type="text" name="username" class="form-control" placeholder="用户名（必填）">
+                        </div>
+                        <div class="form-group">
+                            <label>邮箱</label>
+                            <input type="email" name="email" class="form-control" placeholder="邮箱（选填）">
+                        </div>
+                        <div class="form-group">
+                            <label>联系电话</label>
+                            <input type="text" name="phone" value="13177898843" class="form-control" data-inputmask='"mask": "(+86) 999-9999-9999"' data-mask placeholder="联系电话（选填）">
+                        </div>
+                        <div class="form-group">
+                            <label>角色</label>
+                            <select id="role-select" name="roles" class="form-control select2" multiple="multiple" data-placeholder="角色（选填）" style="width: 100%;">
+                                <c:forEach items="${roles}" var="role">
+                                    <option value="${role.id}">${role.name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>所属部门</label>
+                            <select id="organization-select" name="organization" class="form-control select2" data-placeholder="所属部门（选填）" style="width: 100%;">
+                                <c:forEach items="${organizations}" var="o">
+                                    <option value="${o.id}">${o.name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+                <button type="button" id="update_submit" class="btn btn-primary">提交</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -262,6 +325,30 @@
             });
         });
         /**
+         * 更新
+         * */
+        $("#update_submit").click(function () {
+            var data = getFormJson("#update_form");
+            $.ajax({
+                type:"POST",
+                url:"sysuser/"+data.id+"/update",
+                data:data,
+                dataType:"json",
+                success:function (data) {
+                    if (data.meta.success){
+                        //添加成功
+                        $("#add_modal").modal('hide');
+                        window.location = "sysuser/sysuser-view.html";
+                    }else{
+                        modalShow("#warn_modal",data.meta.message);
+                    }
+                },
+                error:function(error){
+                    console.log(error);
+                }
+            });
+        });
+        /**
          * 删除
          */
         $("#del_submit").click(function () {
@@ -292,6 +379,60 @@
     function modalShow(id,content) {
         $("#text").html(content);
         $(id).modal('show');
+    }
+
+    /**
+     * 初始化更新modal
+     * @param obj
+     */
+    function initUpdateModal(obj) {
+        var tds = $(obj).parents('tr').find('td');
+        console.log(tds);
+        //给modal设置值
+        var inputs = $("#update_form input");
+
+        console.log($(obj).data('myid'));
+        // 设置用户ID
+        $(inputs[0]).val($(obj).data('myid'));
+        // 设置用户名
+        $(inputs[1]).val(tds[0].innerHTML);
+        // 设置邮箱
+        $(inputs[2]).val(tds[2].innerHTML);
+        // 设置电话
+        $(inputs[3]).val(tds[1].innerHTML);
+
+       // console.log(inputs);
+        // 分割role字符串
+        var roleString = tds[4].innerHTML.split(",");
+        console.log(roleString);
+        // clear
+        $('#role-select option').each(function(index,element){
+            element.removeAttribute('selected');
+        });
+        // clear organization-select
+        $('#organization-select option').each(function(index,element){
+            element.removeAttribute('selected');
+        });
+        // role-select
+        console.log($('#role-select option'));
+        $('#role-select option').each(function(index,element){
+            for (var i=0;i<roleString.length;i++){
+                if (element.innerHTML == roleString[i]){
+                    $(element).attr('selected',true);
+                }
+            }
+        });
+
+        // organization-select
+        $('#organization-select option').each(function(index,element){
+            console.log(element + "  "+element.innerHTML);
+            if (tds[3].innerHTML == element.innerHTML){
+                console.log(tds[3].innerHTML == element.innerHTML);
+                $(element).attr('selected',true);
+            }
+        });
+        $(".select2").select2();
+        $("#update_modal").modal('show');
     }
 </script>
 

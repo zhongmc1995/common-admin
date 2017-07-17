@@ -21,4 +21,11 @@
         SELECT o.*
         FROM sys_organization o
     </select>
+
+    <update id="updateOrganization" parameterType="Organization">
+        UPDATE
+        sys_organization
+        SET name = #{name},available=#{available},update_by = #{update_by},update_time=#{update_time}
+        WHERE id = #{id}
+    </update>
 </mapper>

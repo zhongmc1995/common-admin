@@ -1,9 +1,6 @@
 package com.zmc.service.Impl;
 
-import com.zmc.common.entity.Organization;
-import com.zmc.common.entity.Resource;
-import com.zmc.common.entity.Role;
-import com.zmc.common.entity.User;
+import com.zmc.common.entity.*;
 import com.zmc.mapper.UserMapper;
 import com.zmc.service.UserService;
 import com.zmc.utils.EncryptHelper;
@@ -104,6 +101,16 @@ public class UserServiceImpl implements UserService {
 
     public Set<Role> findRolesByUsername(String usernmae) throws Exception {
         return userMapper.findRolesByUsername(usernmae);
+    }
+
+    public Boolean updateUser(User user) {
+        try {
+            Integer result = userMapper.updateUser(user);
+            return result > 0 ? true : false;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**

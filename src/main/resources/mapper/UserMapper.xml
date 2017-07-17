@@ -95,6 +95,15 @@
         VALUES (#{id},#{username},#{password},#{email},#{phone},#{salt},#{locked},#{organization.id},#{create_time},#{update_time},#{create_by},#{update_by})
     </insert>
 
+    <!-- 更新用户 -->
+    <update id="updateUser" parameterType="User">
+        UPDATE
+        sys_user
+        SET username = #{username},email =#{email},phone = #{phone},locked = #{locked},
+            organization_id = #{organization.id},update_time = #{update_time},update_by = #{update_by}
+        WHERE id = #{id}
+    </update>
+
     <!-- 用户关联组织 -->
     <update id="relatedOrganization">
         UPDATE sys_user

@@ -39,10 +39,7 @@ public class ResourceServiceImpl implements ResourceService {
     public Boolean deleteResourceById(Long id) {
         try {
             Integer result = resourceMapper.deleteResourceById(id);
-            if (result>0)
-                return true;
-            else
-                return false;
+            return result > 0 ? true : false;
         }catch (Exception e){
             e.printStackTrace();
             return false;

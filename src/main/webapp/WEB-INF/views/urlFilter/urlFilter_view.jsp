@@ -319,11 +319,6 @@
         /**
          * 更新
          */
-        /*$("#update_a").click(function () {
-            alert("hello");
-           var tds = $(this).parents('tr').find('td');
-           console.log(tds);
-        });*/
         $("#update_submit").click(function () {
             var data = getFormJson("#update_form");
             $.ajax({

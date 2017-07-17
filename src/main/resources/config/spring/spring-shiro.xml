@@ -108,10 +108,11 @@
         <property name="loginUrl" value="/login"/>
     </bean>
 
-    <bean id="captchaFilter" class="com.zmc.shiro.filter.CaptchaValidateFilter" />
+    <bean id="captchaFilter" class="com.zmc.shiro.filter.CaptchaValidateFilter"/>
     <bean id="roleFilter" class="com.zmc.shiro.filter.MyRolesAuthorizationFilter"/>
 
     <bean id="sysUserFilter" class="com.zmc.shiro.filter.SysUserFilter"/>
+
     <!-- 限制登陆个数filter -->
     <bean id="kickoutSessionControlFilter" class="com.zmc.shiro.filter.KickoutSessionControlFilter">
         <property name="cacheManager" ref="cacheManager"/>
@@ -133,7 +134,7 @@
                 <entry key="sysUser" value-ref="sysUserFilter"/>
                 <entry key="captchaValidate" value-ref="captchaFilter"/>
                 <entry key="roles" value-ref="roleFilter"/>
-                <entry key="sessionLimitation" value-ref="kickoutSessionControlFilter" />
+                <entry key="sessionLimitation" value-ref="kickoutSessionControlFilter"/>
             </util:map>
         </property>
         <property name="defaultFilterChainDefinitions">

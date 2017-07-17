@@ -305,7 +305,8 @@
                     }
                 },
                 error:function(error){
-                    console.log(error);
+                    console.log("出错了");
+                    console.log(error.message);
                 }
             });
         });
@@ -367,6 +368,10 @@
             console.log("opened");
             $(inputs[4]).prop('checked','checked');
         }
+        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+            checkboxClass: 'icheckbox_flat-green',
+            radioClass: 'iradio_flat-green'
+        });
         $("#update_modal").modal('show');
     }
 </script>
