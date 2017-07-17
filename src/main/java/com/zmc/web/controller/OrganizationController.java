@@ -1,10 +1,12 @@
 package com.zmc.web.controller;
 
 import com.zmc.common.entity.Organization;
+import com.zmc.common.entity.Resource;
 import com.zmc.common.entity.Response;
 import com.zmc.common.entity.User;
 import com.zmc.service.OrganizationService;
 import com.zmc.web.bind.annotation.CurrentUser;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,6 +76,30 @@ public class OrganizationController {
         }catch (Exception e) {
             e.printStackTrace();
             return response.failure("删除失败");
+        }
+    }
+
+
+    @RequestMapping(value = "/{id}/update",method = RequestMethod.GET)
+    @ResponseBody
+    public Response organizationUpdate(@PathVariable String id,Organization organization){
+        Response response = new Response();
+        if (StringUtils.isEmpty(organization.getName())){
+            return response.failure("部门名称不能为空");
+        }
+        if (StringUtils.isEmpty(organization.getAvailable())){
+            return response.failure("请开启是否可用");
+        }
+
+        String username = (String) SecurityUtils.getSubject().getPrincipal();
+        organization.setUpdate_time(new Date());
+        organization.setCreate_by(username);
+
+        Boolean result = organizationService.updateOrganization(organization);
+        if (result){
+            return response.success(organization);
+        }else {
+            return response.failure("更新失败");
         }
     }
 }

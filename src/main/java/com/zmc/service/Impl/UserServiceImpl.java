@@ -10,6 +10,7 @@ import com.zmc.utils.EncryptHelper;
 import com.zmc.web.bind.annotation.Log;
 import com.zmc.web.bind.handler.LogType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -58,11 +59,18 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-
+    /**
+     * 查询用户
+     * @param username
+     * @return
+     * @throws Exception
+     */
+    //@Cacheable(value = "currentUser",key = "#p0")
     public User findUserByUsername(String username) throws Exception {
         List<User> users = userMapper.findUserByUsername(username);
         return (users==null || users.size()==0) ? null : users.get(0);
     }
+
     @Log(type = LogType.UPDATE,operation = "修改密码")
     public Boolean modifyPassword(User user) {
         try {

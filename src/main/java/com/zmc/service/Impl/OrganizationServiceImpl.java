@@ -39,4 +39,28 @@ public class OrganizationServiceImpl implements OrganizationService {
     public List<Organization> findAllOrganizations() throws Exception {
         return organizationMapper.findAllOrganizations();
     }
+
+    /**
+     * 更新一个部门
+     * @param organization
+     * @return
+     */
+    @Log(type = LogType.UPDATE,operation = "更新部门")
+    public Boolean updateOrganization(Organization organization) {
+
+        try {
+            Integer result = organizationMapper.updateOrganization(organization);
+            if (result > 0){
+                return true;
+            }else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+
 }

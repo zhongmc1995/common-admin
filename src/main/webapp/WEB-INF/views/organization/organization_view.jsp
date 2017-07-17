@@ -141,7 +141,7 @@
                             <label>是否可用</label>
                             <br>
                             <label>
-                                <input type="radio" name="available" value="1" class="flat-red" checked>是
+                                <input type="radio" name="available" value="1" class="flat-red" checked="checked">是
                             </label>
                             <label>
                                 <input type="radio" name="available" value="0" class="flat-red">否
@@ -355,16 +355,17 @@
             $(inputs[i]).val(tds[i-1].innerHTML);
         }
         //设置input radio
-        $(inputs[3]).attr("checked",false);
-        $(inputs[4]).attr("checked",false);
+        //$(inputs[3]).prop("checked",false);
+        //$(inputs[4]).prop("checked",false);
         console.log(tds[2]);
         if (tds[2].innerHTML == 1){
             //禁用
-            $(inputs[3]).prop('checked',true);
-            console.log(1);
+            console.log("forbidden");
+            $(inputs[3]).prop('checked','checked');
+
         }else {
-            $(inputs[4]).prop('checked',true);
-            console.log(0);
+            console.log("opened");
+            $(inputs[4]).prop('checked','checked');
         }
         $("#update_modal").modal('show');
     }

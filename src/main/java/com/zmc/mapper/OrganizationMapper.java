@@ -20,5 +20,9 @@ public interface OrganizationMapper {
      * 获取所有的Organization
      */
     List<Organization> findAllOrganizations()throws Exception;
+    /**
+     * 更新organization
+     */
+    Integer updateOrganization(Organization organization)throws Exception;
 
 }

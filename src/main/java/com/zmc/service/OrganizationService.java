@@ -10,4 +10,5 @@ public interface OrganizationService {
     void addOrganization(Organization organization)throws Exception;
     Boolean deleteOrganizationById(Long id)throws Exception;
     List<Organization> findAllOrganizations()throws Exception;
+    Boolean updateOrganization(Organization organization);
 }
