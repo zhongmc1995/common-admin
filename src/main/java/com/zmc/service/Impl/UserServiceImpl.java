@@ -67,7 +67,6 @@ public class UserServiceImpl implements UserService {
      * @return
      * @throws Exception
      */
-    //@Cacheable(value = "currentUser",key = "#p0")
     public User findUserByUsername(String username) throws Exception {
         List<User> users = userMapper.findUserByUsername(username);
         return (users==null || users.size()==0) ? null : users.get(0);
