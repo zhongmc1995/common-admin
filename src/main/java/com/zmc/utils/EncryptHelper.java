@@ -12,12 +12,12 @@ import org.springframework.beans.factory.annotation.Value;
  * 加密工具类
  */
 public class EncryptHelper {
-    private RandomNumberGenerator randomNumberGenerator = new SecureRandomNumberGenerator();
+    private static RandomNumberGenerator randomNumberGenerator = new SecureRandomNumberGenerator();
 
     @Value("${password.algorithmName}")
-    private String algorithmName = "md5";
+    private static String algorithmName = "md5";
     @Value("${password.hashIterations}")
-    private int hashIterations = 2;
+    private static int hashIterations = 2;
 
     public void setRandomNumberGenerator(RandomNumberGenerator randomNumberGenerator) {
         this.randomNumberGenerator = randomNumberGenerator;
@@ -31,7 +31,7 @@ public class EncryptHelper {
         this.hashIterations = hashIterations;
     }
 
-    public void encrypt(User user) {
+    public final static void encrypt(User user) {
 
         user.setSalt(randomNumberGenerator.nextBytes().toHex());
 
@@ -42,5 +42,27 @@ public class EncryptHelper {
                 hashIterations).toHex();
 
         user.setPassword(newPassword);
+    }
+
+    /**
+     *
+     * @param user 加密好了的用户
+     * @param newPwd 未加密的明文用户
+     * @return
+     */
+    public final static Boolean doMatch(User user,String newPwd) {
+        User modifyUser = new User();
+        modifyUser.setUsername(user.getUsername());
+        modifyUser.setSalt(user.getSalt());
+        modifyUser.setPassword(newPwd);
+        String modifyPassword = new SimpleHash(
+                algorithmName,
+                modifyUser.getPassword(),
+                ByteSource.Util.bytes(modifyUser.getCredentialsSalt()),
+                hashIterations).toHex();
+
+        //user.setPassword(modifyPassword);
+
+        return modifyPassword.equals(user.getPassword());
     }
 }

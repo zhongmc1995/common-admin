@@ -98,7 +98,8 @@
                                             </shiro:hasPermission>
 
                                             <shiro:hasPermission name="sysuser:update">
-                                                <a href="${pageContext.request.contextPath}/sysuser/${user.id}/changePassword" class="btn btn-warning btn-sm">改密</a>
+                                                <a href="#" data-myid="${user.id}" onclick="setUserID(this)" data-toggle="modal" data-target="#modify_pwd_modal"
+                                                   class="btn btn-warning btn-sm">改密</a>
                                             </shiro:hasPermission>
                                         </td>
                                     </tr>
@@ -247,6 +248,41 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+<!--update modal-->
+<div class="modal fade" id="modify_pwd_modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">新增</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" id="modify_pwd_form">
+                    <div class="box-body">
+                        <input type="hidden" id="modify-pwd-id" value="">
+                        <div class="form-group">
+                            <label>旧密码</label>
+                            <input type="text" id="oldpwd" name="oldpwd" class="form-control" placeholder="请输入原始密码">
+                        </div>
+                        <div class="form-group">
+                            <label>新密码</label>
+                            <input type="text" id="newpwd" name="newpwd" class="form-control" placeholder="请输入新密码">
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+                <button type="button" id="modify_pwd_submit" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 <!--del modal-->
 <div class="modal modal-danger fade" id="del_modal" aria-hidden="true">
     <div class="modal-dialog">
@@ -371,6 +407,34 @@
                 }
             })
         });
+
+        /**
+         * 修改密码
+         * */
+        $("#modify_pwd_submit").click(function () {
+            var id = $('#modify-pwd-id').val();
+            console.log(id);
+            $.ajax({
+                type:"POST",
+                url:"sysuser/"+id+"/modifyPwd",
+                dataType:'json',
+                data:{
+                    oldpwd:$('#oldpwd').val(),
+                    newpwd:$('#newpwd').val()
+                },
+                success:function (data) {
+                    if (data.meta.success){
+                        //添加成功
+                        window.location = "sysuser/sysuser-view.html";
+                    }else{
+                        modalShow("#warn_modal",data.meta.message);
+                    }
+                },
+                error:function(error){
+                    console.log(error);
+                }
+            })
+        });
     });
     $(".select2").select2();
     /**
@@ -380,7 +444,13 @@
         $("#text").html(content);
         $(id).modal('show');
     }
-
+    /**
+     * 修改密码设置ID
+     * */
+    function setUserID(Obj) {
+        console.log("id:"+$(Obj).data('myid'));
+        $('#modify-pwd-id').val($(Obj).data('myid'));
+    }
     /**
      * 初始化更新modal
      * @param obj

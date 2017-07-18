@@ -6,10 +6,11 @@ import com.zmc.service.UserService;
 import com.zmc.utils.EncryptHelper;
 import com.zmc.web.bind.annotation.Log;
 import com.zmc.web.bind.handler.LogType;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -24,6 +25,10 @@ public class UserServiceImpl implements UserService {
 
     public List<User> findAllUsers() throws Exception {
         return userMapper.findAllUsers();
+    }
+
+    public User findUserById(Long id) throws Exception {
+        return userMapper.findUserById(id);
     }
 
     public List<User> findAllUsersWithFullInfo() throws Exception {
@@ -70,6 +75,9 @@ public class UserServiceImpl implements UserService {
 
     @Log(type = LogType.UPDATE,operation = "修改密码")
     public Boolean modifyPassword(User user) {
+        user.setUpdate_by((String) SecurityUtils.getSubject().getPrincipal());
+        user.setUpdate_time(new Date());
+        EncryptHelper.encrypt(user);
         try {
             Integer result  = userMapper.modifyPassword(user);
             if (result>0)

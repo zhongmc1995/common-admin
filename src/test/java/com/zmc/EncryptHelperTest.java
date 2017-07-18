@@ -14,8 +14,9 @@ public class EncryptHelperTest {
     public void encryptTest(){
         EncryptHelper encryptHelper = new EncryptHelper();
         User user = new User();
-        user.setUsername("lisi");
-        user.setPassword("lisi");
+        user.setUsername("test");
+        user.setPassword("test");
+        user.setSalt("5fa5b4d58bcd6f4bc542c01a226bf97d");
         encryptHelper.encrypt(user);
         System.out.println(user);
         System.out.println(user.getPassword());

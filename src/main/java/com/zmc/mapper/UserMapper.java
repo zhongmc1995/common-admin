@@ -23,6 +23,8 @@ public interface UserMapper {
      */
     List<User> findAllUsersWithFullInfo()throws Exception;
 
+    User findUserById(Long id)throws Exception;
+
     /**
      * 新增一个用户
      * @param user
@@ -36,7 +38,7 @@ public interface UserMapper {
 
     List<User> findUserByUsername(String username)throws Exception;
 
-    Integer modifyPassword(@Param("u") User user)throws Exception;
+    Integer modifyPassword(User user)throws Exception;
 
     Integer deleteUserById(Long id)throws Exception;
 

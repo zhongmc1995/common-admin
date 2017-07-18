@@ -1,11 +1,13 @@
 package com.zmc.web.controller;
 
 import com.zmc.common.entity.Organization;
+import com.zmc.common.entity.Resource;
 import com.zmc.common.entity.Response;
 import com.zmc.common.entity.User;
 import com.zmc.service.OrganizationService;
 import com.zmc.service.RoleService;
 import com.zmc.service.UserService;
+import com.zmc.utils.EncryptHelper;
 import com.zmc.web.bind.annotation.CurrentUser;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -205,5 +207,50 @@ public class UserController {
             return response.failure("请求参数异常");
         }
 
+    }
+
+
+    /**
+     * 修改密码
+     */
+    @RequestMapping(value = "/{id}/modifyPwd",method = RequestMethod.POST)
+    @ResponseBody
+    public Response modifyPwd(@PathVariable String id, HttpServletRequest request){
+        Response response = new Response();
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        if (StringUtils.isEmpty(parameterMap.get("oldpwd")[0])){
+            return response.failure("请填写原始密码");
+        }
+        try {
+            Long userId = Long.valueOf(id);
+            // 要修改密码的用户
+            User modifyUser = userService.findUserById(userId);
+            if (modifyUser == null){
+                return response.failure("无效的用户");
+            }
+            if (!(EncryptHelper.doMatch(modifyUser,parameterMap.get("oldpwd")[0]))){
+                return response.failure("原始密码错误");
+            }
+            if (StringUtils.isEmpty(parameterMap.get("newpwd")[0])){
+                return response.failure("新密码不能为空");
+            }
+            modifyUser.setPassword(parameterMap.get("newpwd")[0]);
+            Boolean result = userService.modifyPassword(modifyUser);
+            if (result){
+                response.success(modifyUser);
+            }else {
+                response.failure("修改失败");
+            }
+
+
+        }catch (NumberFormatException e){
+            e.printStackTrace();
+            return response.failure("修改的用户无效");
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.failure("修改异常");
+        }
+
+        return response;
     }
 }
