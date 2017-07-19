@@ -54,7 +54,8 @@ public class ResourceTest extends BaseTest {
 
     @Test
     public void buildMenuTree() throws Exception {
-        List<Resource> lisi = resourceService.findWildResourcesByUsername("lisi");
+        //List<Resource> lisi = resourceService.findWildResourcesByUsername("lisi");
+        List<Resource> lisi = resourceService.findAllResources();
         List<Menu> menus = MenuHelper.buildMenuTree(lisi);
         System.out.println(menus);
     }

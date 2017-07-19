@@ -60,4 +60,17 @@
                   ,update_by = #{update_by},update_time = #{update_time}
         WHERE id = #{id}
     </update>
+
+    <!-- 关联role和resource -->
+    <insert id="relateRoleAndResource">
+        INSERT INTO sys_role_resource(role_id,resource_id)
+        VALUES (#{roleId},#{resourceId})
+    </insert>
+
+    <!-- 取消关联role和resource -->
+    <delete id="unrelateRoleAndResource">
+        DELETE
+        FROM sys_role_resource
+        WHERE role_id = #{roleId} AND resource_id = #{resourceId}
+    </delete>
 </mapper>

@@ -72,5 +72,13 @@ public class RoleServiceImpl implements RoleService {
         return result > 0;
     }
 
+    public void relateRoleAndResource(Long roleId, Long resourceId) throws Exception {
+        roleMapper.relateRoleAndResource(roleId,resourceId);
+    }
+
+    public void unelateRoleAndResource(Long roleId, Long resourceId) throws Exception {
+        roleMapper.unrelateRoleAndResource(roleId,resourceId);
+    }
+
 
 }

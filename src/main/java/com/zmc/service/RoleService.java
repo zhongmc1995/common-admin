@@ -14,4 +14,7 @@ public interface RoleService {
     Boolean forbidRoleById(Long id) throws Exception;
     Boolean enableRoleById(Long id) throws Exception;
     Boolean updateRole(Role role)throws Exception;
+    void relateRoleAndResource(Long roleId,Long resourceId)throws Exception;
+    void unelateRoleAndResource(Long roleId,Long resourceId)throws Exception;
+
 }

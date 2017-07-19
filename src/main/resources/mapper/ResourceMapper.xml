@@ -21,4 +21,11 @@
         FROM sys_resource
         WHERE id = #{id}
     </delete>
+
+    <!-- 通过ROleid查找Resource -->
+    <select id="findResourceByRoleId" parameterType="long" resultType="Resource">
+        SELECT r.*
+        FROM sys_role_resource rr,sys_resource r
+        WHERE rr.resource_id = r.id and rr.role_id = #{id};
+    </select>
 </mapper>

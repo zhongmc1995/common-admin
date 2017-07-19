@@ -64,6 +64,10 @@ public class ResourceServiceImpl implements ResourceService {
         return wildResourcesForUser;
     }
 
+    public List<Resource> findResourceByRoleId(Long id) throws Exception {
+        return resourceMapper.findResourceByRoleId(id);
+    }
+
     /**
      * 判断Resource是否在permission的操控范围内
      * @param permissions

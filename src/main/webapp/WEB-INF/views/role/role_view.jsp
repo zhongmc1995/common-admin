@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="static/plugins/datatables/dataTables.bootstrap.css">
     <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" href="static/plugins/iCheck/all.css">
+    <%--
+        <link rel="stylesheet" href="static/plugins/ztree/css/demo.css" type="text/css">--%>
+    <link rel="stylesheet" href="static/plugins/ztree/css/metroStyle/metroStyle.css" type="text/css">
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -50,7 +53,8 @@
                             <h3 class="box-title">
                                 <shiro:hasPermission name="role:create">
                                     <button type="button" data-toggle="modal" data-target="#add_modal"
-                                            class="btn btn-block btn-primary">新增</button>
+                                            class="btn btn-block btn-primary">新增
+                                    </button>
                                 </shiro:hasPermission>
                             </h3>
                         </div>
@@ -76,20 +80,25 @@
                                         <td>${role.name}</td>
                                         <td>${role.describtion}</td>
                                         <td>${role.available}</td>
-                                        <td><fmt:formatDate value="${role.create_time}" pattern="yyyy-MM-dd"></fmt:formatDate></td>
+                                        <td><fmt:formatDate value="${role.create_time}"
+                                                            pattern="yyyy-MM-dd"></fmt:formatDate></td>
                                         <td>${role.create_by}</td>
                                         <td>${role.update_by}</td>
-                                        <td><fmt:formatDate value="${role.update_time}" pattern="yyyy-MM-dd"></fmt:formatDate></td>
+                                        <td><fmt:formatDate value="${role.update_time}"
+                                                            pattern="yyyy-MM-dd"></fmt:formatDate></td>
                                         <td>
                                             <shiro:hasPermission name="role:update">
-                                                <a href="javascript:void(0)" onclick="buildUpdateModal(this)" data-myid="${role.id}" class="btn btn-primary btn-sm">修改</a>
+                                                <a href="javascript:void(0)" onclick="buildUpdateModal(this)"
+                                                   data-myid="${role.id}" class="btn btn-primary btn-sm">修改</a>
                                             </shiro:hasPermission>
                                             <shiro:hasPermission name="role:grant">
-                                                <a href="javascript:void(0)" onclick="buildUpdateModal(this)" data-myid="${role.id}" class="btn btn-warning btn-sm">授权</a>
+                                                <a href="javascript:void(0)" onclick="grantInitModal(this)"
+                                                   data-myid="${role.id}" class="btn btn-warning btn-sm">授权</a>
                                             </shiro:hasPermission>
                                             <shiro:hasPermission name="role:delete">
                                                 <a href="#" data-myid="${role.id}" onclick="initDelId(this)"
-                                                   data-toggle="modal" data-target="#del_modal" class="btn btn-danger btn-sm">删除</a>
+                                                   data-toggle="modal" data-target="#del_modal"
+                                                   class="btn btn-danger btn-sm">删除</a>
                                             </shiro:hasPermission>
                                         </td>
                                     </tr>
@@ -210,6 +219,34 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+<!--grant modal-->
+<div class="modal fade" id="grant_modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">更新</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" id="grant_form">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <ul id="treeDemo" class="ztree"></ul>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+                <button type="button" id="grant_submit" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 <!--del modal-->
 <div class="modal modal-danger fade" id="del_modal" aria-hidden="true">
     <div class="modal-dialog">
@@ -256,9 +293,13 @@
 <script src="static/plugins/datatables/dataTables.bootstrap.min.js"></script>
 <!-- iCheck 1.0.1 -->
 <script src="static/plugins/iCheck/icheck.min.js"></script>
+
+<script type="text/javascript" src="static/plugins/ztree/js/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="static/plugins/ztree/js/jquery.ztree.excheck.js"></script>
+
 <script>
     $(function () {
-        $("#organization_tb").DataTable();
+        $("#role_tb").DataTable();
 
         //Flat red color scheme for iCheck
         $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
@@ -271,20 +312,20 @@
         $("#add_submit").click(function () {
             console.log("submit...");
             $.ajax({
-                type:"POST",
-                url:"role/role-create",
-                data:getFormJson("#add_form"),
-                dataType:"json",
-                success:function (data) {
-                    if (data.meta.success){
+                type: "POST",
+                url: "role/role-create",
+                data: getFormJson("#add_form"),
+                dataType: "json",
+                success: function (data) {
+                    if (data.meta.success) {
                         //添加成功
                         $("#add_modal").modal('hide');
                         window.location = "role/role-view.html";
-                    }else{
-                        modalShow("#warn_modal",data.meta.message);
+                    } else {
+                        modalShow("#warn_modal", data.meta.message);
                     }
                 },
-                error:function(error){
+                error: function (error) {
                     console.log(error);
                 }
             });
@@ -297,20 +338,20 @@
         $("#update_submit").click(function () {
             var data = getFormJson("#update_form");
             $.ajax({
-                type:"POST",
-                url:"role/"+data.id+"/update",
-                data:data,
-                dataType:"json",
-                success:function (data) {
-                    if (data.meta.success){
+                type: "POST",
+                url: "role/" + data.id + "/update",
+                data: data,
+                dataType: "json",
+                success: function (data) {
+                    if (data.meta.success) {
                         //添加成功
                         $("#add_modal").modal('hide');
                         window.location = "role/role-view.html";
-                    }else{
-                        modalShow("#warn_modal",data.meta.message);
+                    } else {
+                        modalShow("#warn_modal", data.meta.message);
                     }
                 },
-                error:function(error){
+                error: function (error) {
                     console.log("出错了");
                     console.log(error.message);
                 }
@@ -325,18 +366,18 @@
             var id = $("#id_box").val();
             console.log(id);
             $.ajax({
-                type:"GET",
-                url:"role/"+id+"/delete",
-                success:function (data) {
+                type: "GET",
+                url: "role/" + id + "/delete",
+                success: function (data) {
                     console.log(data);
-                    if (data.meta.success){
+                    if (data.meta.success) {
                         //添加成功
                         window.location = "role/role-view.html";
-                    }else{
-                        modalShow("#warn_modal",data.meta.message);
+                    } else {
+                        modalShow("#warn_modal", data.meta.message);
                     }
                 },
-                error:function(error){
+                error: function (error) {
                     console.log(error);
                 }
             })
@@ -344,7 +385,7 @@
         /**
          * 部门添加提交
          */
-        function modalShow(id,content) {
+        function modalShow(id, content) {
             $("#text").html(content);
             $(id).modal('show');
         }
@@ -357,22 +398,22 @@
         var inputs = $("#update_form input");
         console.log(inputs)
         $(inputs[0]).val($(obj).data('myid'));
-        for (var i=1;i<inputs.length-2;i++){
+        for (var i = 1; i < inputs.length - 2; i++) {
             //设置input text
-            $(inputs[i]).val(tds[i-1].innerHTML);
+            $(inputs[i]).val(tds[i - 1].innerHTML);
         }
         //设置input radio
         //$(inputs[3]).prop("checked",false);
         //$(inputs[4]).prop("checked",false);
         console.log(tds[2]);
-        if (tds[2].innerHTML == 1){
+        if (tds[2].innerHTML == 1) {
             //禁用
             console.log("forbidden");
-            $(inputs[3]).prop('checked','checked');
+            $(inputs[3]).prop('checked', 'checked');
 
-        }else {
+        } else {
             console.log("opened");
-            $(inputs[4]).prop('checked','checked');
+            $(inputs[4]).prop('checked', 'checked');
         }
         $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
             checkboxClass: 'icheckbox_flat-green',
@@ -380,6 +421,128 @@
         });
         $("#update_modal").modal('show');
     }
+
+
 </script>
+<SCRIPT type="text/javascript">
+    var setting = {
+        view: {
+            selectedMulti: false
+        },
+        check: {
+            enable: true,
+            chkboxType: {"Y": "s", "N": "ps"}
+        },
+        data: {
+            simpleData: {
+                enable: true,
+                idKey: "id",
+                pIdKey: "parent_id"
+            }
+        },
+        edit: {
+            enable: true
+        }
+    };
+    /**
+     * 授权modal初始化
+     */
+    var allMenu, menuForRole;
+    function grantInitModal(Obj) {
+        //获取所有的Menu
+        getAllMenu();
+        console.log(allMenu);
+        //获取对应角色的ID
+        var roleId = $(Obj).data('myid');
+        $('#id_box').val(roleId);
+        console.log(roleId);
+        getMenuForRole(roleId);
+        console.log(menuForRole);
+        allMenu.forEach(function (element, index, array) {
+            // element: 指向当前元素的值
+            // index: 指向当前索引
+            // array: 指向Array对象本身
+            element.open = true;
+            element.name = element.name+" => 权限字符串:"+element.permission;
+            menuForRole.forEach(function (item, index, array) {
+                if (element.id == item.id) {
+                    element.checked = true;
+                }
+            });
+        });
+        $.fn.zTree.init($("#treeDemo"), setting, allMenu);
+        $("#grant_modal").modal('show');
+    }
+    /**
+     * 授权完毕提交
+     **/
+     $('#grant_submit').click(function(){
+         var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+         //获取改变了的节点（这个改变相对于初始化的时候）
+         var changedNodes = treeObj.getChangeCheckedNodes();
+         var roleId = $('#id_box').val();
+         console.log(roleId);
+         console.log(changedNodes);
+         var data = [];
+         changedNodes.forEach(function (element){
+            console.log(element.id+":"+element.checked);
+            var node = new Object();
+            node.id = element.id;
+            node.checked = element.checked;
+            data.push(node);
+         });
+         console.log(JSON.stringify(data));
+         $.ajax({
+             url:"resource/grant/"+roleId,
+             type:"POST",
+             dataType:"json",
+             contentType:"application/json",
+             data:JSON.stringify(data),
+             success:function(){
+                 window.location = "role/role-view.html";
+             },
+             error:function(){
+                 modalShow("#warn_modal", data.meta.message);
+             }
+         });
+     });
+
+
+    /**
+     * ajax获取menu的json
+     */
+    function getAllMenu() {
+        $.ajax({
+            url: 'resource/getAllMenu',
+            type: 'GET',
+            async: false,
+            success: function (data) {
+                allMenu = data;
+            },
+            error: function (error) {
+                console.log("error");
+                console.log(error);
+            }
+        });
+        return allMenu;
+    }
+    function getMenuForRole(roleId) {
+        $.ajax({
+            url: 'resource/getMenuForRole?id=' + roleId,
+            type: 'GET',
+            async: false,
+            success: function (data) {
+                menuForRole = data;
+            },
+            error: function (error) {
+                console.log("error");
+                console.log(error);
+            }
+        });
+        return menuForRole;
+    }
+
+    //-->
+</SCRIPT>
 </body>
 </html>

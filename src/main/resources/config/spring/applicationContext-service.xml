@@ -9,6 +9,7 @@
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 
     <import resource="applicationContext-dao.xml"/>
+    <import resource="spring-shiro.xml"/>
     <aop:aspectj-autoproxy proxy-target-class="true"/>
     <bean id="systemLogAspect" class="com.zmc.web.bind.handler.LogAspect"></bean>
     <context:component-scan base-package="com.zmc.service"></context:component-scan>

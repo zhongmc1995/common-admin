@@ -29,4 +29,22 @@ public interface RoleMapper {
      * 更新角色
      */
     Integer updateRole(Role role)throws Exception;
+
+    /**
+     * 关联role和resource
+     * @param roleId
+     * @param resourceId
+     * @return
+     * @throws Exception
+     */
+    void relateRoleAndResource(@Param("roleId") Long roleId,@Param("resourceId")Long resourceId)throws Exception;
+
+    /**
+     * 取消关联role和resource
+     * @param roleId
+     * @param resourceId
+     * @return
+     * @throws Exception
+     */
+    void unrelateRoleAndResource(@Param("roleId") Long roleId,@Param("resourceId")Long resourceId)throws Exception;
 }
