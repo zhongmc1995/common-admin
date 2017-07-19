@@ -15,7 +15,7 @@ public class Role extends BaseEntity {
     /**
      * 角色描述
      */
-    private String descr;
+    private String describtion;
     /**
      * 角色是否可用
      * 0：不可用
@@ -37,12 +37,12 @@ public class Role extends BaseEntity {
         this.name = name;
     }
 
-    public String getDescr() {
-        return descr;
+    public String getDescribtion() {
+        return describtion;
     }
 
-    public void setDesc(String descr) {
-        this.descr = descr;
+    public void setDescribtion(String describtion) {
+        this.describtion = describtion;
     }
 
     public Integer getAvailable() {
@@ -65,7 +65,7 @@ public class Role extends BaseEntity {
     public String toString() {
         return "Role{" +
                 "name='" + name + '\'' +
-                ", descr='" + descr + '\'' +
+                ", describtion='" + describtion + '\'' +
                 ", available=" + available +
                 '}';
     }

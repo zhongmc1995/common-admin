@@ -4,7 +4,7 @@
     <resultMap id="RoleWithBelongedUsers" type="Role">
         <id property="id" column="id" />
         <result property="name" column="name" />
-        <result property="desc" column="desc" />
+        <result property="describtion" column="describtion" />
         <result property="available" column="available" />
         <result property="create_time" column="create_time" />
         <result property="update_time" column="update_time" />
@@ -29,8 +29,8 @@
     
     <!-- 新增role -->
     <insert id="insertRole" parameterType="Role">
-        INSERT INTO sys_role(name,descr,available,create_time,update_time,create_by,update_by)
-        VALUES (#{name},#{descr},#{available},#{create_time},#{update_time},#{create_by},#{update_by})
+        INSERT INTO sys_role(name,describtion,available,create_time,update_time,create_by,update_by)
+        VALUES (#{name},#{describtion},#{available},#{create_time},#{update_time},#{create_by},#{update_by})
     </insert>
     
     <!-- 删除 -->
@@ -53,4 +53,11 @@
         FROM sys_role r
     </select>
 
+    <!-- 更新角色 -->
+    <update id="updateRole" parameterType="Role">
+        UPDATE sys_role
+        SET name = #{name},describtion = #{describtion},available = #{available}
+                  ,update_by = #{update_by},update_time = #{update_time}
+        WHERE id = #{id}
+    </update>
 </mapper>

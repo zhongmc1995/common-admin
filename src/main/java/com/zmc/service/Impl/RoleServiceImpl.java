@@ -67,7 +67,10 @@ public class RoleServiceImpl implements RoleService {
         }
     }
 
-
+    public Boolean updateRole(Role role) throws Exception {
+        Integer result = roleMapper.updateRole(role);
+        return result > 0;
+    }
 
 
 }

@@ -13,4 +13,5 @@ public interface RoleService {
     List<Role> findAllRoles()throws Exception;
     Boolean forbidRoleById(Long id) throws Exception;
     Boolean enableRoleById(Long id) throws Exception;
+    Boolean updateRole(Role role)throws Exception;
 }

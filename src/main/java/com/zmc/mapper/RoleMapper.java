@@ -25,4 +25,8 @@ public interface RoleMapper {
      * 获取所有角色
      */
     List<Role> findAllRoles()throws Exception;
+    /**
+     * 更新角色
+     */
+    Integer updateRole(Role role)throws Exception;
 }

@@ -33,7 +33,7 @@ public class RoleTest extends BaseTest {
     public void addRole() throws Exception {
         Role role = new Role();
         role.setName("manager");
-        role.setDesc("总经理");
+        role.setDescribtion("总经理");
         role.setAvailable(Constant.ENABLE);
         role.setCreate_time(new Date());
         role.setCreate_by("zhongmc");
