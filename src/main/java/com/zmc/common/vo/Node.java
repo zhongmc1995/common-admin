@@ -2,6 +2,9 @@ package com.zmc.common.vo;
 
 import java.io.Serializable;
 
+/**
+ * 授权时需要映射的对象
+ */
 public class Node implements Serializable {
         Long id;
         Boolean checked;

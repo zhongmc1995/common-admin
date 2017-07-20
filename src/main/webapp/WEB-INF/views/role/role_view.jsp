@@ -463,7 +463,7 @@
             // index: 指向当前索引
             // array: 指向Array对象本身
             element.open = true;
-            element.name = element.name+" => 权限字符串:"+element.permission;
+            element.name = element.name+" => 权限字符串 : "+element.permission;
             menuForRole.forEach(function (item, index, array) {
                 if (element.id == item.id) {
                     element.checked = true;

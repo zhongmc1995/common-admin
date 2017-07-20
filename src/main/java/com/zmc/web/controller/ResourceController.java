@@ -9,13 +9,13 @@ import com.zmc.service.RoleService;
 import com.zmc.utils.MenuHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by zhongmc on 2017/7/19.
@@ -58,7 +58,7 @@ public class ResourceController {
 
     @RequestMapping(value = "/grant/{roleId}",method = RequestMethod.POST)
     @ResponseBody
-    public Response grantResourceForRole(@PathVariable String roleId, @RequestBody ArrayList<Node> nodes, HttpServletRequest request){
+    public Response grantResourceForRole(@PathVariable String roleId, @RequestBody ArrayList<Node> nodes){
         Response response = new Response();
         try {
             Long id = Long.valueOf(roleId);
@@ -80,5 +80,13 @@ public class ResourceController {
             return response.failure("授权异常");
         }
 
+    }
+
+    @RequestMapping(value = "/resource-view.html",method = RequestMethod.GET)
+    public String resourceView(Model model) throws Exception {
+
+        List<Resource> resources = resourceService.findAllResources();
+        model.addAttribute("resources",resources);
+        return "resource/resource_view";
     }
 }

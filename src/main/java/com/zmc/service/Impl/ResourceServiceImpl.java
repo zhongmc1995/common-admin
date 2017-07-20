@@ -46,7 +46,7 @@ public class ResourceServiceImpl implements ResourceService {
         }
     }
 
-    @Cacheable(value="menu-resource",key="#p0")
+    /*@Cacheable(value="menu-resource",key="#p0")*/
     public List<Resource> findWildResourcesByUsername(String username) throws Exception {
         List<Resource> wildResourcesForUser = new ArrayList<Resource>();
         Set<Resource> resourcesForUser = userMapper.findResourceByUsername(username);
