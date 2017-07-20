@@ -606,4 +606,7 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
  [ERROR][2017/07/19 14:13:58410][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
  [ERROR][2017/07/19 14:14:06962][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
  [ERROR][2017/07/19 14:19:44155][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/07/20 20:09:32803][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/07/20 20:10:53390][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
+ [ERROR][2017/07/20 20:11:35594][com.alibaba.druid.pool.DruidAbstractDataSource.setMaxIdle(DruidAbstractDataSource.java:991)] - maxIdle is deprecated
  

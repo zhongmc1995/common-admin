@@ -61,7 +61,7 @@ public class UrlFilterServiceImpl implements UrlFilterService {
     public UrlFilter findUrlFilterById(Long urlFilterId)throws Exception {
         return urlFilterMapper.findUrlFilterById(urlFilterId);
     }
-    @Log(type = LogType.QUERY,operation = "查询所有UrlFilter")
+    /*@Log(type = LogType.QUERY,operation = "查询所有UrlFilter")*/
     public List<UrlFilter> findAllUrlFilters()throws Exception {
         return urlFilterMapper.findAllUrlFilters();
     }

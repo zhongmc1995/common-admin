@@ -97,8 +97,11 @@ public class UserTest extends BaseTest {
     @Test
     public void findResourceByUsername() throws Exception {
 
-        Set<Resource> lisi = userService.findResourceByUsername("lisi");
-        System.out.println(lisi);
+        /*Set<Resource> lisi = userService.findResourceByUsername("lisi");
+        System.out.println(lisi);*/
+
+        String permission = "xxxx:";
+        System.out.println(permission.indexOf(":"));
     }
 
 }

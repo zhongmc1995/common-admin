@@ -2,19 +2,21 @@ package com.zmc.web.controller;
 
 import com.zmc.common.entity.Resource;
 import com.zmc.common.entity.Response;
+import com.zmc.common.entity.User;
 import com.zmc.common.vo.Menu;
 import com.zmc.common.vo.Node;
 import com.zmc.service.ResourceService;
 import com.zmc.service.RoleService;
 import com.zmc.utils.MenuHelper;
+import com.zmc.web.bind.annotation.CurrentUser;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -88,5 +90,52 @@ public class ResourceController {
         List<Resource> resources = resourceService.findAllResources();
         model.addAttribute("resources",resources);
         return "resource/resource_view";
+    }
+
+    @RequestMapping(value = "/resource-create",method = RequestMethod.POST)
+    @ResponseBody
+    public Response resourceAdd(Resource resource, @CurrentUser User user){
+        Response response = new Response();
+        if (StringUtils.isEmpty(resource.getName())){
+            return response.failure("资源名称不能为空");
+        }
+        String permission = resource.getPermission();
+        int index = permission.indexOf(":");
+        if (index < 1 || index == (permission.length()-1)){
+            return response.failure("资源权限字符串不合法");
+        }
+        resource.setCreate_by(user.getUsername());
+        resource.setCreate_time(new Date());
+        try {
+            resourceService.addResource(resource);
+            return response.success();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return response.failure("添加失败");
+        }
+    }
+
+    /**
+     * resource删除
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/{id}/delete",method = RequestMethod.GET)
+    @ResponseBody
+    public Response resourceDelete(@PathVariable String id){
+        Response response = new Response();
+        Long resourceId;
+        try {
+            resourceId = Long.valueOf(id);
+            Boolean result = resourceService.deleteResourceById(resourceId);
+            if (result){
+                return response.success();
+            }else {
+                return response.failure();
+            }
+        }catch (NumberFormatException e){
+            e.printStackTrace();
+            return response.failure("无效的ID");
+        }
     }
 }

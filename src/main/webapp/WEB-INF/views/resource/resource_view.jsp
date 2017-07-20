@@ -119,12 +119,12 @@
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                组织列表
+                系统资源列表
                 <%--<small>Control panel</small>--%>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">组织列表</li>
+                <li class="active">系统资源列表</li>
             </ol>
         </section>
         <!-- Main content -->
@@ -134,10 +134,7 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">
-                                <shiro:hasPermission name="resource:create">
-                                    <button type="button" data-toggle="modal" data-target="#add_modal"
-                                            class="btn btn-block btn-primary">新增</button>
-                                </shiro:hasPermission>
+                                系统资源列表
                             </h3>
                         </div>
                         <!-- /.box-header -->
@@ -168,18 +165,32 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">新增</h4>
+                <h4 class="modal-title">新增节点</h4>
             </div>
             <div class="modal-body">
                 <form role="form" id="add_form">
                     <div class="box-body">
                         <div class="form-group">
-                            <label>部门名称</label>
-                            <input type="text" name="name" class="form-control" placeholder="部门名称（必填）">
+                            <label>父级菜单</label>
+                            <input type="hidden" name="parent_ids" id="parent_ids">
+                            <input type="hidden" name="parent_id" id="parent_id">
+                            <input type="text" id="parent_name" name="parent_name" class="form-control" placeholder="父级菜单">
                         </div>
                         <div class="form-group">
-                            <label>部门描述</label>
-                            <input type="text" name="describe" class="form-control" placeholder="描述（选填）">
+                            <label>资源名称</label>
+                            <input type="text" name="name" class="form-control" placeholder="资源名称（必填）">
+                        </div>
+                        <div class="form-group">
+                            <label>资源类型</label>
+                            <input type="text" name="type" class="form-control" placeholder="menu/button">
+                        </div>
+                        <div class="form-group">
+                            <label>资源地址</label>
+                            <input type="text" name="url" class="form-control" placeholder="资源地址（选填）">
+                        </div>
+                        <div class="form-group">
+                            <label>权限字符串</label>
+                            <input type="text" name="permission" class="form-control" placeholder="资源地址（选填）">
                         </div>
                         <div class="form-group">
                             <label>是否可用</label>
@@ -313,14 +324,14 @@
             console.log("submit...");
             $.ajax({
                 type:"POST",
-                url:"organization/organization-create",
+                url:"resource/resource-create",
                 data:getFormJson("#add_form"),
                 dataType:"json",
                 success:function (data) {
                     if (data.meta.success){
                         //添加成功
                         $("#add_modal").modal('hide');
-                        window.location = "organization/organization-view.html";
+                        window.location = "resource/resource-view.html";
                     }else{
                         modalShow("#warn_modal",data.meta.message);
                     }
@@ -367,12 +378,12 @@
             console.log(id);
             $.ajax({
                 type:"GET",
-                url:"organization/"+id+"/delete",
+                url:"resource/"+id+"/delete",
                 success:function (data) {
                     console.log(data);
                     if (data.meta.success){
                         //添加成功
-                        window.location = "organization/organization-view.html";
+                        window.location = "resource/resource-view.html";
                     }else{
                         modalShow("#warn_modal",data.meta.message);
                     }
@@ -391,35 +402,23 @@
         }
 
     });
-
-    function buildUpdateModal(obj) {
-        var tds = $(obj).parents('tr').find('td');
-        //给modal设置值
-        var inputs = $("#update_form input");
-        console.log(inputs)
-        $(inputs[0]).val($(obj).data('myid'));
-        for (var i=1;i<inputs.length-2;i++){
-            //设置input text
-            $(inputs[i]).val(tds[i-1].innerHTML);
-        }
-        //设置input radio
-        //$(inputs[3]).prop("checked",false);
-        //$(inputs[4]).prop("checked",false);
-        console.log(tds[2]);
-        if (tds[2].innerHTML == 1){
-            //禁用
-            console.log("forbidden");
-            $(inputs[3]).prop('checked','checked');
-
-        }else {
-            console.log("opened");
-            $(inputs[4]).prop('checked','checked');
-        }
-        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-            checkboxClass: 'icheckbox_flat-green',
-            radioClass: 'iradio_flat-green'
-        });
-        $("#update_modal").modal('show');
+    function initDelId(obj) {
+        var id = $(obj).data("myid");
+        $('#id_box').val(id);
+    }
+    /**
+     * 初始化新增modal框
+     * @param obj
+     */
+    function initAddModal(obj) {
+        var parentName = $(obj).data("myname");
+        var parentId = $(obj).data("myid");
+        var parentParentIds = $(obj).data("myparentids")+parentId;
+        $("#parent_ids").val(parentParentIds);
+        $("#parent_id").val(parentId);
+        $("#parent_name").val(parentName);
+        console.log(parentName+","+parentId+","+parentParentIds);
+        $("#add_modal").modal('show');
     }
 </script>
 <script>
@@ -460,10 +459,10 @@
         var spaceStr = "<span style='height:1px;display: inline-block;width:" + (spaceWidth * treeNode.level) + "px'></span>";
         switchObj.before(spaceStr);
         var editStr = '';
-        editStr += '<div class="diy">' + (treeNode.type == null ? '&nbsp;' : treeNode.type) + '</div>';
+        editStr += '<div class="diy">' + ((treeNode.type == '' || treeNode.type == null) ? '&nbsp;' : treeNode.type) + '</div>';
         var corpCat = '<div title="' + treeNode.url + '">' + treeNode.url + '</div>';
-        editStr += '<div class="diy">' + (treeNode.url == '' ? '&nbsp;' : treeNode.url ) + '</div>';
-        editStr += '<div class="diy">' + (treeNode.permission == null ? '&nbsp;' : treeNode.permission ) + '</div>';
+        editStr += '<div class="diy">' + ((treeNode.url == '' || treeNode.url == null) ? '&nbsp;' : treeNode.url ) + '</div>';
+        editStr += '<div class="diy">' + ((treeNode.permission == '' || treeNode.permission == null) ? '&nbsp;' : treeNode.permission ) + '</div>';
         editStr += '<div class="diy">' + formatHandle(treeNode) + '</div>';
         aObj.append(editStr);
     }
@@ -516,28 +515,13 @@
      * @param treeNode
      * @returns {string}
      */
-
-    <%--<shiro:hasPermission name="role:update">
-    <a href="javascript:void(0)" onclick="buildUpdateModal(this)"
-    data-myid="${role.id}" class="btn btn-primary btn-sm">修改</a>
-        </shiro:hasPermission>
-        <shiro:hasPermission name="role:grant">
-        <a href="javascript:void(0)" onclick="grantInitModal(this)"
-    data-myid="${role.id}" class="btn btn-warning btn-sm">授权</a>
-        </shiro:hasPermission>
-        <shiro:hasPermission name="role:delete">
-        <a href="#" data-myid="${role.id}" onclick="initDelId(this)"
-    data-toggle="modal" data-target="#del_modal"
-    class="btn btn-danger btn-sm">删除</a>
-        </shiro:hasPermission>--%>
     function formatHandle(treeNode) {
         var htmlStr = '';
-        htmlStr += '<shiro:hasPermission name="resource:update"><button type="button" onclick="buildUpdateModal(this)"data-myid="${resource.id}" class="btn btn-primary btn-xs">修改</button></shiro:hasPermission>';
-        htmlStr += '<shiro:hasPermission name="resource:create"> <button onclick="grantInitModal(this)"data-myid="${resource.id}" class="btn btn-info btn-xs">添加</button></shiro:hasPermission>';
-        htmlStr += '<shiro:hasPermission name="resource:delete"> <button data-myid="${resource.id}" onclick="initDelId(this)"data-toggle="modal" data-target="#del_modal"class="btn btn-danger btn-xs">删除</button></shiro:hasPermission>';
+        htmlStr += '<shiro:hasPermission name="resource:update"><button type="button" onclick="buildUpdateModal(this)" data-myid=\"'+treeNode.id+'\" class="btn btn-primary btn-xs">修改</button></shiro:hasPermission>';
+        htmlStr += '<shiro:hasPermission name="resource:create"> <button onclick="initAddModal(this)" data-myparentids=\"'+treeNode.parent_ids+'\" data-myname=\"'+treeNode.name+'\" data-myid=\"'+treeNode.id+'\" class="btn btn-info btn-xs">添加</button></shiro:hasPermission>';
+        htmlStr += '<shiro:hasPermission name="resource:delete"> <button data-myid=\"'+treeNode.id+'\" onclick="initDelId(this)"data-toggle="modal" data-target="#del_modal"class="btn btn-danger btn-xs">删除</button></shiro:hasPermission>';
         return htmlStr;
     }
-
     $(function () {
         //初始化数据
         query();
