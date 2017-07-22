@@ -274,6 +274,7 @@
                 你确定要删除这条记录吗？
             </div>
             <div class="modal-footer">
+                <input type="hidden" id="id_box" value="" >
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
                 <button type="button" id="del_submit" class="btn btn-outline" data-dismiss="modal">确定</button>
             </div>
@@ -376,9 +377,21 @@
             console.log("submit..");
             var id = $("#id_box").val();
             console.log(id);
+            var treeObj = $.fn.zTree.getZTreeObj("dataTree");
+            console.log(treeObj);
+            var delNode = treeObj.getNodeByParam("id", id, null);
+            console.log(delNode);
+            console.log("-------------");
+            //获取要删除的节点下的子节点
+            var childStr='';
+            var child = treeObj.getNodesByFilter(function(node){
+                childStr += node.id+"/";
+                return true
+            },false,delNode);
+            console.log(childStr);
             $.ajax({
                 type:"GET",
-                url:"resource/"+id+"/delete",
+                url:"resource/"+id+"/delete?child="+childStr,
                 success:function (data) {
                     console.log(data);
                     if (data.meta.success){

@@ -68,6 +68,12 @@ public class ResourceServiceImpl implements ResourceService {
         return resourceMapper.findResourceByRoleId(id);
     }
 
+    public void deleteResourceBatchByIds(List<Long> ids)throws Exception {
+        for (Long id : ids){
+            resourceMapper.deleteResourceById(id);
+        }
+    }
+
     /**
      * 判断Resource是否在permission的操控范围内
      * @param permissions

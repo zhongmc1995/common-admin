@@ -13,4 +13,5 @@ public interface ResourceService {
     Boolean deleteResourceById(Long id);
     List<Resource> findWildResourcesByUsername(String username) throws Exception;
     List<Resource> findResourceByRoleId(Long id)throws Exception;
+    void deleteResourceBatchByIds(List<Long> ids)throws Exception;
 }

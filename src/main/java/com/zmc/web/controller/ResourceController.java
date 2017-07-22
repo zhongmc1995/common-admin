@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -122,20 +123,29 @@ public class ResourceController {
      */
     @RequestMapping(value = "/{id}/delete",method = RequestMethod.GET)
     @ResponseBody
-    public Response resourceDelete(@PathVariable String id){
+    public Response resourceDelete(@PathVariable String id, HttpServletRequest request){
         Response response = new Response();
-        Long resourceId;
+
         try {
-            resourceId = Long.valueOf(id);
-            Boolean result = resourceService.deleteResourceById(resourceId);
-            if (result){
-                return response.success();
-            }else {
-                return response.failure();
+            String child = request.getParameter("child");
+            Long resourceId = Long.valueOf(id);
+            List<Long> delId = new ArrayList<Long>();
+            delId.add(resourceId);
+            if (StringUtils.isNotEmpty(child)){
+                String[] split = child.split("[/]");
+                for (String s : split){
+                    delId.add(Long.valueOf(s));
+                }
+
             }
+            resourceService.deleteResourceBatchByIds(delId);
+            return response.success();
         }catch (NumberFormatException e){
             e.printStackTrace();
             return response.failure("无效的ID");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return response.failure("删除失败");
         }
     }
 }
