@@ -40,7 +40,7 @@ public class ResourceController {
     @ResponseBody
     public List<Resource> getAllMenu() throws Exception {
         List<Resource> resources = resourceService.findAllResources();
-        List<Menu> menus = MenuHelper.buildMenuTree(resources);
+        //List<Menu> menus = MenuHelper.buildMenuTree(resources);
         return resources;
     }
 
