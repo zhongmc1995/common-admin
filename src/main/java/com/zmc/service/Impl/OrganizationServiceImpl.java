@@ -1,7 +1,6 @@
 package com.zmc.service.Impl;
 
 import com.zmc.common.entity.Organization;
-import com.zmc.mapper.LogRecordMapper;
 import com.zmc.mapper.OrganizationMapper;
 import com.zmc.service.OrganizationService;
 import com.zmc.web.bind.annotation.Log;
@@ -16,8 +15,10 @@ import java.util.List;
  */
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
+
     @Autowired
     private OrganizationMapper organizationMapper;
+
     @Log(type = LogType.INSERT,operation = "新增部门")
     public void addOrganization(Organization organization) throws Exception {
         organizationMapper.insertOrganization(organization);
@@ -47,7 +48,6 @@ public class OrganizationServiceImpl implements OrganizationService {
      */
     @Log(type = LogType.UPDATE,operation = "更新部门")
     public Boolean updateOrganization(Organization organization) {
-
         try {
             Integer result = organizationMapper.updateOrganization(organization);
             if (result > 0){
@@ -59,8 +59,5 @@ public class OrganizationServiceImpl implements OrganizationService {
             e.printStackTrace();
             return false;
         }
-
     }
-
-
 }
